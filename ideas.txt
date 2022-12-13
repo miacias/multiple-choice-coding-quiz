@@ -1,0 +1,31 @@
+OVER-ARCHING GOALS:
+
+- timed coding quiz with multiple-choice questions
+- runs in browser
+- dynamically updated HTML and CSS (powered by JS)
+- responsive user interface (adapts to different devices and screen sizes)
+- questions and answers supplied by "Weekly wrap up" quiz in Module 3
+
+PSEUDO-CODE:
+
+√ create start button (HTML)
+- create timer that counts down per 1000milliseconds from a set start time and stops at 0s
+    - set time begins at 60s (15 questions = 4s per question)
+    - add event listener to start button to begin timer on click AND call quiz function
+- create bank of 15 questions (provided) as objects with correct and incorrect responses set to true or false? or as ABCD?
+    - create bank of 2-4 possible choices per question
+    - put all question bank objects in an array?
+- if response is correct, replace question with next question, print "correct" to HTML, and set internal counters for number of points earned
+- if response is incorrect, timer loses 1s, replace question with next question, print "incorrect" to HTML
+- if question bank has no more questions left, win condition
+- if timer reaches 0, lose condition
+- when win condition OR lose condition, user is prompted to input initials AND score is saved to local storage (extra: save time left to local storage)
+
+VISUAL STRUCTURE:
+
+- home page with title, instructions, start button, and "view high scores link"
+- start changes page to have question as title and answers as buttons (highlight on hover, outline on click)
+- correct response prints out "correct" on screen AND changes page to next question
+- incorrect response prints out "wrong" on screen AND changes page to next question
+- responding to final question ends at a final "finished" page with printed score on screen and textbox to input initials
+- entering initials and clicking submit changes page to the high score Leaderboard that has "go back" and "clear scores" buttons
