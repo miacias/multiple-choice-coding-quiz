@@ -1,0 +1,22 @@
+:root {
+    /* --black-purple: #221A2E;
+    --lavender: #AE90DA;
+    --white-purple: #F1E8FE; */
+    --dark-purple: #5c4369;
+    --light-purple: #b8a5c2;
+    --white-purple: #f0e4f7;
+    --white: white;
+    --sunflower: #ffdd54;
+    --blue-gray: #3b4954;
+}
+
+body {
+    background-color: var(--dark-purple);
+    color: var(--light-purple);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+h1, h2 {
+    color: var(--sunflower);
+}

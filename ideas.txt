@@ -9,7 +9,7 @@ OVER-ARCHING GOALS:
 PSEUDO-CODE:
 
 √ create start button (HTML)
-    - add event listener to start button to begin timer on click AND call quiz function
+    √ add event listener to start button to begin timer on click AND call quiz function
 √ create timer that counts down per 1000milliseconds from a set start time and stops at 0s
     √ set time begins at 60s (15 questions = 4s per question)
 - create bank of 15 questions (provided) as objects with correct and incorrect responses set to true or false? or as ABCD?
