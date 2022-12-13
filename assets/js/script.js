@@ -39,6 +39,10 @@ var question4 = {
 
 // JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
 
+// event listener startButton to call quiz function and call timeRemaining function
+
+function quiz() {
+}
 
 function timeRemaining() {
     var timerEl = document.querySelector(".time-remaining");
