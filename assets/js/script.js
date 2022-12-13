@@ -45,7 +45,7 @@ var startButton = document.querySelector(".start-button");
 var openingPage = document.querySelector(".opening-page");
 
 startButton.addEventListener("click", function() {
-    openingPage = "";
+    // openingPage = "";
     quiz();
     timeRemaining();
 });
@@ -54,7 +54,7 @@ startButton.addEventListener("click", function() {
 function quiz() {
 }
 
-function timeRemaining() {
+function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
     var secondsLeft = 60;
     var timerInterval = setInterval(function() {
