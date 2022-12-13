@@ -39,13 +39,12 @@ var question4 = {
 
 // JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
 
-// event listener startButton to call quiz function and call timeRemaining function
-
 var startButton = document.querySelector(".start-button");
 var openingPage = document.querySelector(".opening-page");
 
-startButton.addEventListener("click", function() {
-    // openingPage = "";
+startButton.addEventListener("click", function(event) {
+    var element = event.target;
+    const state = element.getAttribute("data-active");
     quiz();
     timeRemaining();
 });
