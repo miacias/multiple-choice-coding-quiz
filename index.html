@@ -9,14 +9,34 @@
 <body>
     <header>
         <h1>JavaScript Coding Quiz!</h1>
-        <p>Answer all 15 questions before time runs out, but be careful because the timer will drop after a wrong answer!</p>
+        <p>Answer as many questions as you can before time runs out, but be careful because the timer will drop after a wrong answer!</p>
+        <button class="start-button">Start!</button>
     </header>
-    <main></main>
-    <aside class="scoreboard">
-        <h2>Scoreboard!</h2>
+    <main>
+        <div class="question-box">
+            <h2 class="question-text"></h2>
+            <div class="responses">
+                <button class="response-A"></button>
+                <button class="response-B"></button>
+                <button class="response-C"></button>
+                <button class="response-D"></button>
+            </div>
+        </div>
+    </main>
+    <aside class="leaderboard">
+        <h2>Leaderboard!</h2>
+        <form class="add-score">
+            <p>What a legend! Add your initials to be remembered forever!</p>
+            <label for="initials">Initials:</label>
+            <input type="text" id="initials" name="initials">
+            <button class="submit-initials">Submit</button>
+        </form>
+        <div class="user-scores"></div>
+        <button class="home">Home</button>
+        <button class="reset-board">Clear Scores</button>
     </aside>
     <footer>
-        <p>Great job working on your JavaScript knowledge base. Thanks for playing!</p>
+        <p>Great job reinforcing your JavaScript knowledge. Thanks for playing!</p>
     </footer>
     <script src="script.js"></script>
 </body>
