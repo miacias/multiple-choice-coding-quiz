@@ -37,4 +37,23 @@ var question4 = {
     incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
 }
 
-// test
+// JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
+
+
+function timeRemaining() {
+    var timerEl = document.querySelector(".time-remaining");
+    var secondsLeft = 60;
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timerEl.textContent = secondsLeft + " seconds";
+        // console.log()
+
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            // create function for lose case to call in this line
+            var timerDone = document.querySelector(".timer");
+            timerDone.textContent = "Time is up!"; // replaces countdown timer and "time left" text
+        }
+    }, 1000);
+}
+timeRemaining();
