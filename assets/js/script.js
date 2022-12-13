@@ -41,6 +41,16 @@ var question4 = {
 
 // event listener startButton to call quiz function and call timeRemaining function
 
+var startButton = document.querySelector(".start-button");
+var openingPage = document.querySelector(".opening-page");
+
+startButton.addEventListener("click", function() {
+    openingPage = "";
+    quiz();
+    timeRemaining();
+});
+
+
 function quiz() {
 }
 
@@ -49,15 +59,12 @@ function timeRemaining() {
     var secondsLeft = 60;
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timerEl.textContent = secondsLeft + " seconds";
-        // console.log()
-
+        timerEl.textContent = "Time left: " + secondsLeft + " seconds";
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             // create function for lose case to call in this line
-            var timerDone = document.querySelector(".timer");
+            var timerDone = document.querySelector(".time-remaining");
             timerDone.textContent = "Time is up!"; // replaces countdown timer and "time left" text
         }
     }, 1000);
 }
-timeRemaining();
