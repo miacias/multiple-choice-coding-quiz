@@ -42,8 +42,10 @@ var question4 = {
 var startButton = document.querySelector(".start-button");
 var openingPage = document.querySelector(".opening-page");
 
+
 startButton.addEventListener("click", function(event) {
-    var element = event.target;
+    // event listener is currently passing "event" as a parameter, which may or may not work. the following two lines attempt to attach to data attributes to be able to hide opening-page and leaderboard-page on click
+    var element = event.target; 
     const state = element.getAttribute("data-active");
     quiz();
     timeRemaining();
