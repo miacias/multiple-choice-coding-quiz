@@ -1,3 +1,4 @@
+// consider making a randomizer function that cycles through quetions so that questions can be scoped locally (i.e. made private). how to get it to not repeat questions twice?
 const questionBank = [question1, question2, question3, question4];
 
 var question1 = {
@@ -88,8 +89,7 @@ function timeRemaining() { // only visible after clicking Start Button
     }, 1000);
 }
 
-
-function quiz() {
+function insertQuestion() {
     // access HTML question section
     var question = document.querySelector(".question");
     var responsesBox = document.querySelector(".responses");
@@ -97,6 +97,11 @@ function quiz() {
     var responseB = document.querySelector(".response-B");
     var responseC = document.querySelector(".response-C");
     var responseD = document.querySelector(".response-D");
+
+}
+
+function quiz() {
+
 }
 
 // START triggers game, timer, and show/hide pages
