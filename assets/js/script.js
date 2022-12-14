@@ -51,15 +51,12 @@ function quiz(event) {
 
 // START triggers game function, timer function, and data-attribute change to hide opening-page
 startButton.addEventListener("click", function(event) {
-    var element = event.target;
-    const state = element.getAttribute("data-state");
-    console.log(element.getAttribute("data-state"));
+    var page = event.target;
+    const state = page.getAttribute("data-state");
+    // more code needed
     quiz();
     timeRemaining();
 });
-
-
-
 
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
