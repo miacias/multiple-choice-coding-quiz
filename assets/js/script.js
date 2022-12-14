@@ -41,19 +41,25 @@ var question4 = {
 
 var startButton = document.querySelector(".start-button");
 var openingPage = document.querySelector(".opening-page");
+var quizPage = document.querySelector(".quiz-page");
+var leaderboardPage = document.querySelector(".leaderboard-page");
+
+function quiz(event) {
+    // I want class opening-page to disappear
+}
 
 
+// START triggers game function, timer function, and data-attribute change to hide opening-page
 startButton.addEventListener("click", function(event) {
-    // event listener is currently passing "event" as a parameter, which may or may not work. the following two lines attempt to attach to data attributes to be able to hide opening-page and leaderboard-page on click
-    var element = event.target; 
-    const state = element.getAttribute("data-active");
+    var element = event.target;
+    const state = element.getAttribute("data-state");
+    console.log(element.getAttribute("data-state"));
     quiz();
     timeRemaining();
 });
 
 
-function quiz() {
-}
+
 
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");

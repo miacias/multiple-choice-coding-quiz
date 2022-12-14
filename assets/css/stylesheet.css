@@ -1,22 +1,24 @@
 :root {
-    /* --black-purple: #221A2E;
-    --lavender: #AE90DA;
-    --white-purple: #F1E8FE; */
-    --dark-purple: #5c4369;
-    --light-purple: #b8a5c2;
-    --white-purple: #f0e4f7;
-    --white: white;
-    --sunflower: #ffdd54;
-    --blue-gray: #3b4954;
+    --blackish: #00060D;
+    --dark-purple: #180829;
+    --maroon: #541438;
+    --carnation: #F25A6B;
+    --beige: #CCB4A9;
 }
 
 body {
     background-color: var(--dark-purple);
-    color: var(--light-purple);
+    color: var(--beige);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
 }
 
 h1, h2 {
-    color: var(--sunflower);
+    color: var(--carnation);
+}
+
+button {
+    background-color: var(--carnation);
+    color: var(--maroon);
+    font-weight: bold;
 }
