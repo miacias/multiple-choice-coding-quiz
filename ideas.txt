@@ -17,7 +17,7 @@ PSEUDO-CODE:
     √ set time begins at 60s (15 questions = 4s per question)
 - create bank of 15 questions (provided) as objects with correct and incorrect responses set to true or false? or as ABCD?
     - create bank of 2-4 possible choices per question
-    - put all question bank objects in an array?
+    √ put all question bank objects in an array?
     - switch question function: 
         - call: insert question content function (see below)
         - if question box is empty, insert first question. if question box already has a question, insert next question, (else hide/return and show leaderboard and commit score to local storage?)
