@@ -82,28 +82,32 @@ function quiz(event) {
     
 }
 
+function makeInactive(page) { // parameter allows running on different page types
+    const dataAttribute = page.getAttribute("data-view");
+    if (dataAttribute === "active") {
+        page.setAttribute("data-view", "inactive");
+        page.style.visibility = "hidden";
+        page.style.display = "none";
+    }
+}
 
+function makeActive(page) { // parameter allows running on different page types
+    const dataAttribute = page.getAttribute("data-view");
+    if (dataAttribute === "inactive") {
+        page.setAttribute("data-view", "active");
+        page.style.visibility = "visible";
+        page.style.display = "block";
+    }
+}
 
-// START triggers game function, timer function, and data-attribute change to hide opening-page
+// START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
     console.log("here is the start button in action");
     // var page = event.target;
     // const dataAttribute = page.getAttribute("data-view");
     timeRemaining();
     quiz();
-    if (openingPage.getAttribute("data-view") === "active") {
-        openingPage.setAttribute("data-view", "inactive"); // hide opening page
-        openingPage.style.visibility = "hidden";
-        openingPage.style.display = "none";
-    }
-    if (quizPage.getAttribute("data-view") === "inactive") {
-        quizPage.setAttribute("data-view", "active"); // making quiz page visible
-        quizPage.style.visibility = "visible"; // CSS attribute change from hidden to visible
-        quizPage.style.display = "block"; // CSS display style (none, inline, block, inline-block)
-    }
-    if (leaderboardPage.getAttribute("data-value") === "inactive") {
-        leaderboardPage.setAttribute("data-view", "inactive"); // hide leaderboard page (not working)
-        leaderboardPage.style.visibility = "hidden";
-        leaderboardPage.style.display = "none";
-    }
+    makeInactive(openingPage);
+    makeActive(quizPage);
+    makeInactive(leaderboardPage);
 });

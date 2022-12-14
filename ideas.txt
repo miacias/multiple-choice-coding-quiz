@@ -12,7 +12,7 @@ PSEUDO-CODE:
     √ add event listener to start button 
         √ begin timer on click
         √ call quiz function
-        - hide opening-page and leaderboard-page
+        √ hide opening-page and leaderboard-page
 √ create timer that counts down per 1000milliseconds from a set start time and stops at 0s
     √ set time begins at 60s (15 questions = 4s per question)
 - create bank of 15 questions (provided) as objects with correct and incorrect responses set to true or false? or as ABCD?
