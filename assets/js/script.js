@@ -44,16 +44,26 @@ var openingPage = document.querySelector(".opening-page");
 var quizPage = document.querySelector(".quiz-page");
 var leaderboardPage = document.querySelector(".leaderboard-page");
 
+// default view of page with OPENING as ACTIVE and QUIZ & LEADERBOARD as INACTIVE
+function openingPage() {
+    openingPage.setAttribute("data-view", "active");
+    quizPage.setAttribute("data-view", "inactive");
+    leaderboardPage.setAttribute("data-view", "inactive");
+}
+
 function quiz(event) {
-    // I want class opening-page to disappear
+    
 }
 
 
 // START triggers game function, timer function, and data-attribute change to hide opening-page
 startButton.addEventListener("click", function(event) {
     var page = event.target;
-    const state = page.getAttribute("data-state");
-    // more code needed
+    const state = page.getAttribute("data-view");
+    // I want class opening-page to disappear
+    if (state === "inactive") {
+        leaderboardPage.setAttribute("data-view", "")
+    }
     quiz();
     timeRemaining();
 });
