@@ -39,48 +39,12 @@ var question4 = {
 
 // JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
 
+// access to HTML sections
 var startButton = document.querySelector(".start-button");
 var openingPage = document.querySelector("#opening-page");
 var quizPage = document.querySelector("#quiz-page");
 var leaderboardPage = document.querySelector("#leaderboard-page");
 var page = document.querySelector(".page"); // all page types
-
-// default view of page with OPENING as ACTIVE and QUIZ & LEADERBOARD as INACTIVE
-// function opener() {
-    openingPage.setAttribute("data-view", "active");
-    openingPage.style.visibility = "visible";
-    openingPage.style.display = "block";
-        console.log(openingPage.getAttribute("data-view"));
-    quizPage.setAttribute("data-view", "inactive");
-    quizPage.style.visibility = "hidden";
-    quizPage.style.display = "none";
-        console.log(quizPage.getAttribute("data-view"));
-    leaderboardPage.setAttribute("data-view", "inactive");
-    leaderboardPage.style.visibility = "hidden";
-    leaderboardPage.style.display = "none";
-        console.log(leaderboardPage.getAttribute("data-view"));
-// }
-// opener();
-
-// timer countdown
-function timeRemaining() { // only visible after clicking Start Button
-    var timerEl = document.querySelector(".time-remaining");
-    var secondsLeft = 60;
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timerEl.textContent = "Time left: " + secondsLeft + " seconds";
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            // create function for lose case to call in this line
-            var timerDone = document.querySelector(".time-remaining");
-            timerDone.textContent = "Time is up!"; // replaces countdown timer and "time left" text
-        }
-    }, 1000);
-}
-
-function quiz(event) {
-    
-}
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -98,6 +62,41 @@ function makeActive(page) { // parameter allows running on different page types
         page.style.visibility = "visible";
         page.style.display = "block";
     }
+}
+
+// default view of page with only OPENING as ACTIVE
+function opener() {
+    makeActive(openingPage);
+    makeInactive(quizPage);
+    makeInactive(leaderboardPage);
+}
+opener();
+
+// timer countdown
+function timeRemaining() { // only visible after clicking Start Button
+    var timerEl = document.querySelector(".time-remaining");
+    var secondsLeft = 60;
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timerEl.textContent = "Time left: " + secondsLeft + " seconds";
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            // create function for lose case to call in this line
+            var timerDone = document.querySelector(".time-remaining");
+            timerDone.textContent = "Time is up!"; // replaces countdown and "time left" text
+        }
+    }, 1000);
+}
+
+
+function quiz() {
+    // access HTML question section
+    var question = document.querySelector(".question");
+    var responsesBox = document.querySelector(".responses");
+    var responseA = document.querySelector(".response-A");
+    var responseB = document.querySelector(".response-B");
+    var responseC = document.querySelector(".response-C");
+    var responseD = document.querySelector(".response-D");
 }
 
 // START triggers game, timer, and show/hide pages
