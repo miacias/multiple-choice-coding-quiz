@@ -1,3 +1,6 @@
+const boop = document.getElementById("boop");
+boop.volume = 0.2;
+
 // consider making a randomizer function that cycles through quetions so that questions can be scoped locally (i.e. made private). how to get it to not repeat questions twice?
 const questionBank = [question1, question2, question3, question4];
 
@@ -107,6 +110,7 @@ function quiz() {
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
     console.log("here is the start button in action");
+    boop.play();
     // var page = event.target;
     // const dataAttribute = page.getAttribute("data-view");
     timeRemaining();
