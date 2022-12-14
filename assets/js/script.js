@@ -46,7 +46,7 @@ var leaderboardPage = document.querySelector("#leaderboard-page");
 var page = document.querySelector(".page"); // all page types
 
 // default view of page with OPENING as ACTIVE and QUIZ & LEADERBOARD as INACTIVE
-function opener() {
+// function opener() {
     openingPage.setAttribute("data-view", "active");
     openingPage.style.visibility = "visible";
     openingPage.style.display = "block";
@@ -59,7 +59,7 @@ function opener() {
     leaderboardPage.style.visibility = "hidden";
     leaderboardPage.style.display = "none";
         console.log(leaderboardPage.getAttribute("data-view"));
-}
+// }
 // opener();
 
 // timer countdown
@@ -86,18 +86,24 @@ function quiz(event) {
 
 // START triggers game function, timer function, and data-attribute change to hide opening-page
 startButton.addEventListener("click", function(event) {
-    console.log("here is the start button");
+    console.log("here is the start button in action");
     // var page = event.target;
-    const dataAttribute = page.getAttribute("data-view");
-    // I want class opening-page to disappear
-    if (dataAttribute === "inactive") {
-        quizPage.setAttribute("data-view", "active"); // making quiz page visible
-        quizPage.style.visibility = "visible"; // CSS attribute change from hidden to visible
-        quizPage.style.display = "block"; // CSS display style (none, inline, block, inline-block)
-        openingPage.setAttribute("data-view", "inactive"); // making opening page hidden
+    // const dataAttribute = page.getAttribute("data-view");
+    timeRemaining();
+    quiz();
+    if (openingPage.getAttribute("data-view") === "active") {
+        openingPage.setAttribute("data-view", "inactive"); // hide opening page
         openingPage.style.visibility = "hidden";
         openingPage.style.display = "none";
     }
-    quiz();
-    timeRemaining();
+    if (quizPage.getAttribute("data-view") === "inactive") {
+        quizPage.setAttribute("data-view", "active"); // making quiz page visible
+        quizPage.style.visibility = "visible"; // CSS attribute change from hidden to visible
+        quizPage.style.display = "block"; // CSS display style (none, inline, block, inline-block)
+    }
+    if (leaderboardPage.getAttribute("data-value") === "inactive") {
+        leaderboardPage.setAttribute("data-view", "inactive"); // hide leaderboard page (not working)
+        leaderboardPage.style.visibility = "hidden";
+        leaderboardPage.style.display = "none";
+    }
 });
