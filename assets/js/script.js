@@ -40,34 +40,29 @@ var question4 = {
 // JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
 
 var startButton = document.querySelector(".start-button");
-var openingPage = document.querySelector(".opening-page");
-var quizPage = document.querySelector(".quiz-page");
-var leaderboardPage = document.querySelector(".leaderboard-page");
+var openingPage = document.querySelector("#opening-page");
+var quizPage = document.querySelector("#quiz-page");
+var leaderboardPage = document.querySelector("#leaderboard-page");
+var page = document.querySelector(".page"); // all page types
 
 // default view of page with OPENING as ACTIVE and QUIZ & LEADERBOARD as INACTIVE
-function openingPage() {
+function opener() {
     openingPage.setAttribute("data-view", "active");
+    openingPage.style.visibility = "visible";
+    openingPage.style.display = "block";
+        console.log(openingPage.getAttribute("data-view"));
     quizPage.setAttribute("data-view", "inactive");
+    quizPage.style.visibility = "hidden";
+    quizPage.style.display = "none";
+        console.log(quizPage.getAttribute("data-view"));
     leaderboardPage.setAttribute("data-view", "inactive");
+    leaderboardPage.style.visibility = "hidden";
+    leaderboardPage.style.display = "none";
+        console.log(leaderboardPage.getAttribute("data-view"));
 }
+// opener();
 
-function quiz(event) {
-    
-}
-
-
-// START triggers game function, timer function, and data-attribute change to hide opening-page
-startButton.addEventListener("click", function(event) {
-    var page = event.target;
-    const state = page.getAttribute("data-view");
-    // I want class opening-page to disappear
-    if (state === "inactive") {
-        leaderboardPage.setAttribute("data-view", "")
-    }
-    quiz();
-    timeRemaining();
-});
-
+// timer countdown
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
     var secondsLeft = 60;
@@ -82,3 +77,27 @@ function timeRemaining() { // only visible after clicking Start Button
         }
     }, 1000);
 }
+
+function quiz(event) {
+    
+}
+
+
+
+// START triggers game function, timer function, and data-attribute change to hide opening-page
+startButton.addEventListener("click", function(event) {
+    console.log("here is the start button");
+    // var page = event.target;
+    const dataAttribute = page.getAttribute("data-view");
+    // I want class opening-page to disappear
+    if (dataAttribute === "inactive") {
+        quizPage.setAttribute("data-view", "active"); // making quiz page visible
+        quizPage.style.visibility = "visible"; // CSS attribute change from hidden to visible
+        quizPage.style.display = "block"; // CSS display style (none, inline, block, inline-block)
+        openingPage.setAttribute("data-view", "inactive"); // making opening page hidden
+        openingPage.style.visibility = "hidden";
+        openingPage.style.display = "none";
+    }
+    quiz();
+    timeRemaining();
+});

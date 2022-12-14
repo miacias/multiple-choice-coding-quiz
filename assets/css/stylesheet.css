@@ -33,14 +33,14 @@ button {
     height: 30px;
 }
 
-.opening-page {
+#opening-page {
     background-color: var(--sea-foam);
 }
 
-.quiz-page {
+#quiz-page {
     background-color: var(--sea-green);
 }
 
-.leaderboard-page {
+#leaderboard-page {
     background-color: var(--blue-green);
 }

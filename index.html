@@ -12,11 +12,11 @@
         <h1>JavaScript Coding Quiz!</h1>
     </header>
     <main>
-        <section class="opening-page" data-view="active">
+        <section class="page" id="opening-page" data-view="active">
             <p>Answer as many questions as you can before time runs out, but be careful because the timer will drop after a wrong answer!</p>
-            <button class="start-button">Start!</button>
+            <button class="start-button">Start Quiz!</button>
         </section>
-        <section class="quiz-page" data-view="inactive">
+        <section class="page" id="quiz-page" data-view="inactive">
             <div class="time-remaining"></div>
             <div class="question-box">
                 <h2 class="question"></h2>
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </section>
-        <section class="leaderboard-page" data-view="inactive">
+        <section class="page" id="leaderboard-page" data-view="inactive">
             <h2>Leaderboard!</h2>
             <form class="add-score">
                 <p>What a legend! Add your initials to be remembered forever!</p>
