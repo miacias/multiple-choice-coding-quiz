@@ -10,27 +10,27 @@ const questionBank = [
         correctFeedback: "Nice job! JavaScript is placed inside the <script> element of the HTML Document.",
         incorrectFeedback: "JavaScript is stored in a <script> element in HTML."
     },
-    {
-        question: "What operator is used to assign a value to a declared variable?",
-        responses: ["question mark (?)", "double equality (==)", "single equality (=)", "colon (:)"],
-        answer: "single equality (=)",
-        correctFeedback: "Awesome! The correct way to assign a variable is with an equal sign (=).",
-        incorrectFeedback: "Variables can be assigned a value with an equal sign (=)."
-    },
-    {
-        question: "What are the six primitive data types in JavaScript?",
-        responses: ["sentence, float, data, bigInt, symbol, undefined", "sentence, int, truthy, bigInt, symbol, undefined", "string, number, boolean, bigInt, symbol, undefined", "string, num, falsy, bigInt, symbol, undefined"],
-        answer: "string, number, boolean, bigInt, symbol, undefined",
-        correctFeedback: "Stellar! JavaScript has a total of six primitive data types: string, number, boolean, bigInt, symbol, undefined.",
-        incorrectFeedback: "JS's six primitive data types are: string, number, boolean, bigInt, symbol, undefined."
-    },
-    {
-        question: "What is the difference between && and || ?",
-        responses: ["The logical operator && returns true if ONE expression is true while the logical operator || returns true if BOTH expressions return true.", "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.", "The logical operator && returns true if BOTH expressions are true while the logical operator || returns false if ONE expression or the other returns true.", "The logical operator && returns true if NONE of the expressions are true while the logical operator || returns true if ONE expression or the other returns true."],
-        answer: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.",
-        correctFeedback: "High-five! The logical operator && returns true if both expressions are true while the logical operator || returns true if one expression or the other returns true.",
-        incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
-    }
+    // {
+    //     question: "What operator is used to assign a value to a declared variable?",
+    //     responses: ["question mark (?)", "double equality (==)", "single equality (=)", "colon (:)"],
+    //     answer: "single equality (=)",
+    //     correctFeedback: "Awesome! The correct way to assign a variable is with an equal sign (=).",
+    //     incorrectFeedback: "Variables can be assigned a value with an equal sign (=)."
+    // },
+    // {
+    //     question: "What are the six primitive data types in JavaScript?",
+    //     responses: ["sentence, float, data, bigInt, symbol, undefined", "sentence, int, truthy, bigInt, symbol, undefined", "string, number, boolean, bigInt, symbol, undefined", "string, num, falsy, bigInt, symbol, undefined"],
+    //     answer: "string, number, boolean, bigInt, symbol, undefined",
+    //     correctFeedback: "Stellar! JavaScript has a total of six primitive data types: string, number, boolean, bigInt, symbol, undefined.",
+    //     incorrectFeedback: "JS's six primitive data types are: string, number, boolean, bigInt, symbol, undefined."
+    // },
+    // {
+    //     question: "What is the difference between && and || ?",
+    //     responses: ["The logical operator && returns true if ONE expression is true while the logical operator || returns true if BOTH expressions return true.", "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.", "The logical operator && returns true if BOTH expressions are true while the logical operator || returns false if ONE expression or the other returns true.", "The logical operator && returns true if NONE of the expressions are true while the logical operator || returns true if ONE expression or the other returns true."],
+    //     answer: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.",
+    //     correctFeedback: "High-five! The logical operator && returns true if both expressions are true while the logical operator || returns true if one expression or the other returns true.",
+    //     incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
+    // }
 ];
 
 // JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
@@ -89,21 +89,22 @@ function timeRemaining() { // only visible after clicking Start Button
 function insertQuestion() {
     // access HTML question section
     var question = document.querySelector(".question");
+    var responseBox = document.querySelector(".responses");
+
     // possibly put for loop in IF
     for (var i = 0; i < questionBank.length; i++) {
-        
+        responseOptions = document.createElement("button"); // creates button(s) for response options A,B,C,D
+        responseBox.append(responseOptions); // appends buttons to responseBox. BROKEN because only one button is created with all object properties attached
+        responseOptions.textContent = (questionBank[responses]); // sets content of buttons to object responses (BROKEN: responses not defined?)
+
+    }
+    const userChoice = document.getElementById(".responses").value;
+    if (userChoice === question[questionBank].answer) {
+        console.log("user clicked correct answer");
+        // need to add more to this IF
     }
     // question.textContent = question1.question; // make this into an array question bank that grabs the object properties
-    var responsesBox = document.querySelector(".responses");
     
-    var responseA = document.querySelector(".response-A");
-    responseA = question1.responseA
-    
-    var responseB = document.querySelector(".response-B");
-    
-    var responseC = document.querySelector(".response-C");
-    
-    var responseD = document.querySelector(".response-D");
 
 }
 
