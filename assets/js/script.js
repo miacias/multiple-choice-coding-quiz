@@ -1,45 +1,37 @@
-// BONUS: consider making a randomizer function that cycles through quetions so that questions can be scoped locally (i.e. made private). how to get it to not repeat questions twice?
+// BONUS: consider making a randomizer function that cycles through quetions so that questions can be scoped locally (i.e. made private). how to get it to not repeat questions twice? track questions that were answered correctly. make a var currentQuestion and then when it is answered correctly, it is removed from questionBank, else if no questions are left: do nothing. (dot)SPLICE!!!
 // BONUS: add a counter to question numbers so each question is counter +=1! this way it won't print question# but count on its own (in case questions are randomized)
 
-const questionBank = [question1, question2, question3, question4];
-
-var question1 = {
-    question: "Inside the HTML document, where do you place your JavaScript code?",
-    responseA: "in the <head> element",
-    responseB: "in the <link> element",
-    responseC: "in the <footer> element",
-    responseD: "in the <script> element", // true
-    // question1.response4 = true;
-    correctFeedback: "Nice job! JavaScript is placed inside the <script> element of the HTML Document.",
-    incorrectFeedback: "JavaScript is stored in a <script> element in HTML."
-}
-var question2 = {
-    question: "What operator is used to assign a value to a declared variable?",
-    responseA: "question mark (?)",
-    responseB: "double equality (==)",
-    responseC: "single equality (=)", // true
-    responseD: "colon (:)",
-    correctFeedback: "Awesome! The correct way to assign a variable is with an equal sign (=).",
-    incorrectFeedback: "Variables can be assigned a value with an equal sign (=)."
-}
-var question3 = {
-    question: "What are the six primitive data types in JavaScript?",
-    responseA: "sentence, float, data, bigInt, symbol, undefined",
-    responseB: "sentence, int, truthy, bigInt, symbol, undefined",
-    responseC: "string, number, boolean, bigInt, symbol, undefined", // true
-    responseD: "string, num, falsy, bigInt, symbol, undefined",
-    correctFeedback: "Stellar! JavaScript has a total of six primitive data types: string, number, boolean, bigInt, symbol, undefined.",
-    incorrectFeedback: "JS's six primitive data types are: string, number, boolean, bigInt, symbol, undefined."
-}
-var question4 = {
-    question: "What is the difference between && and || ?",
-    responseA: "The logical operator && returns true if ONE expression is true while the logical operator || returns true if BOTH expressions return true.",
-    responseB: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.", // true
-    responseC: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns false if ONE expression or the other returns true.",
-    responseD: "The logical operator && returns true if NONE of the expressions are true while the logical operator || returns true if ONE expression or the other returns true.",
-    correctFeedback: "High-five! The logical operator && returns true if both expressions are true while the logical operator || returns true if one expression or the other returns true.",
-    incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
-}
+const questionBank = [
+    {
+        question: "Inside the HTML document, where do you place your JavaScript code?",
+        responses: ["in the <head> element", "in the <link> element", "in the <footer> element", "in the <script> element"],
+        answer: "in the <script> element",
+        // give a set timer to receive feedback then unpause timer and next question
+        correctFeedback: "Nice job! JavaScript is placed inside the <script> element of the HTML Document.",
+        incorrectFeedback: "JavaScript is stored in a <script> element in HTML."
+    },
+    {
+        question: "What operator is used to assign a value to a declared variable?",
+        responses: ["question mark (?)", "double equality (==)", "single equality (=)", "colon (:)"],
+        answer: "single equality (=)",
+        correctFeedback: "Awesome! The correct way to assign a variable is with an equal sign (=).",
+        incorrectFeedback: "Variables can be assigned a value with an equal sign (=)."
+    },
+    {
+        question: "What are the six primitive data types in JavaScript?",
+        responses: ["sentence, float, data, bigInt, symbol, undefined", "sentence, int, truthy, bigInt, symbol, undefined", "string, number, boolean, bigInt, symbol, undefined", "string, num, falsy, bigInt, symbol, undefined"],
+        answer: "string, number, boolean, bigInt, symbol, undefined",
+        correctFeedback: "Stellar! JavaScript has a total of six primitive data types: string, number, boolean, bigInt, symbol, undefined.",
+        incorrectFeedback: "JS's six primitive data types are: string, number, boolean, bigInt, symbol, undefined."
+    },
+    {
+        question: "What is the difference between && and || ?",
+        responses: ["The logical operator && returns true if ONE expression is true while the logical operator || returns true if BOTH expressions return true.", "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.", "The logical operator && returns true if BOTH expressions are true while the logical operator || returns false if ONE expression or the other returns true.", "The logical operator && returns true if NONE of the expressions are true while the logical operator || returns true if ONE expression or the other returns true."],
+        answer: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.",
+        correctFeedback: "High-five! The logical operator && returns true if both expressions are true while the logical operator || returns true if one expression or the other returns true.",
+        incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
+    }
+];
 
 // JS Activity 7: shows how to create HTML element tags with text and attach as children in document.
 
