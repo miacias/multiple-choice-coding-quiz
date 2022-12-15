@@ -91,18 +91,23 @@ function insertQuestion() {
     var question = document.querySelector(".question");
     var responseBox = document.querySelector(".responses");
 
-    // possibly put for loop in IF
-    for (var i = 0; i < questionBank.length; i++) {
-        responseOptions = document.createElement("button"); // creates button(s) for response options A,B,C,D
-        responseBox.append(responseOptions); // appends buttons to responseBox. BROKEN because only one button is created with all object properties attached
-        responseOptions.textContent = (questionBank[responses]); // sets content of buttons to object responses (BROKEN: responses not defined?)
+    // for (var q = 0; q < questionBank.length; q++) {
+        question.textContent = (questionBank[0].question);
 
-    }
-    const userChoice = document.getElementById(".responses").value;
-    if (userChoice === question[questionBank].answer) {
-        console.log("user clicked correct answer");
-        // need to add more to this IF
-    }
+        for (var r = 0; r < questionBank[0].responses.length; r++) {
+            responseOptions = document.createElement("button");
+            responseBox.append(responseOptions);
+            responseOptions.textContent = (questionBank[0].responses[r]); // r counts index number of responses, so each response gets printed in each button
+        }
+         // only one button is created with all object properties attached
+        
+        // responseOptions.textContent = (question[questionBank].answer); // sets content of buttons to object responses (BROKEN: responses not defined?)
+    // }
+    // const userChoice = document.getElementById(".responses").value;
+    // if (userChoice === question[questionBank].answer) {
+    //     console.log("user clicked correct answer");
+    //     // need to add more to this IF
+    // }
     // question.textContent = question1.question; // make this into an array question bank that grabs the object properties
     
 
