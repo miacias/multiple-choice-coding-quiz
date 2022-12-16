@@ -90,7 +90,7 @@ function insertQuestion() {
     // access HTML question section
     var question = document.querySelector(".question");
     var responseBox = document.querySelector(".responses");
-
+    var responseOptions
     // for (var q = 0; q < questionBank.length; q++) {
         question.textContent = (questionBank[0].question);
 
@@ -98,6 +98,10 @@ function insertQuestion() {
             responseOptions = document.createElement("button");
             responseBox.append(responseOptions);
             responseOptions.textContent = (questionBank[0].responses[r]); // r counts index number of responses, so each response gets printed in each button
+            responseOptions.addEventListener("click", function(event) {
+                // switch to next question
+                // else leaderboard page?
+            });
         }
          // only one button is created with all object properties attached
         
@@ -109,8 +113,6 @@ function insertQuestion() {
     //     // need to add more to this IF
     // }
     // question.textContent = question1.question; // make this into an array question bank that grabs the object properties
-    
-
 }
 
 // call insertQuestion and other things? maybe use eventListener in an IF STATEMENT to verify if user selects correct response
