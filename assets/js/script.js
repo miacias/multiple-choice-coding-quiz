@@ -43,12 +43,9 @@ var quizPage = document.querySelector("#quiz-page");
 var leaderboardPage = document.querySelector("#leaderboard-page");
 var page = document.querySelector(".page"); // all page types
 var questionBankLength = questionBank.length;
-var questionBankIndex;
-var correctCount;
-var incorrectCount;
-var penalty;
-var currentTime;
-var timeRemaining = currentTime -= penalty;
+var questionBankIndex = 0;
+var correctCount = 0;
+var timeLeft;
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -92,56 +89,41 @@ function timeRemaining() { // only visible after clicking Start Button
     }, 1000);
 }
 
-
-// use for loop to insert question properties based on questionBank array. if correct, show win text and +1 on array index location. if incorrect, show lose text and +1 on array index location.
 function insertQuestion() {
     // access HTML question section
     var question = document.querySelector(".question");
     var responseBox = document.querySelector(".responses");
     var responseOptions
-    // for (var q = 0; q < questionBank.length; q++) {
-        question.textContent = (questionBank[questionBankIndex].question);
-
-        for (var r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
-            responseOptions = document.createElement("button");
-            responseBox.append(responseOptions);
-            responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
-            responseOptions.addEventListener("click", function(event) {
-                // switch to next question
-                // else leaderboard page?
-            });
-        }
-         // only one button is created with all object properties attached
-        
-        // responseOptions.textContent = (question[questionBank].answer); // sets content of buttons to object responses (BROKEN: responses not defined?)
-    // }
-    // const userChoice = document.getElementById(".responses").value;
-    // if (userChoice === question[questionBank].answer) {
-    //     console.log("user clicked correct answer");
-    //     // need to add more to this IF
-    // }
-    // question.textContent = question1.question; // make this into an array question bank that grabs the object properties
+    question.textContent = (questionBank[questionBankIndex].question); // questionBankIndex is number index location
+    for (var r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
+        responseOptions = document.createElement("button");
+        responseBox.append(responseOptions);
+        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
+    }
 }
 
-// call insertQuestion and other things? maybe use eventListener in an IF STATEMENT to verify if user selects correct response
-// function quiz() {
-//     if () {
-//         insertQuestion();
-//     }
-// }
-
-
-
-// connects audio to JS
-const boop = document.getElementById("boop");
-boop.volume = 0.2;
+// triggers next question by incrementing questionBankIndex +1
+responseOptions.addEventListener("click", function(event) {
+    questionBankIndex += 1;
+    var userChoice = document.querySelector(".responses").value;
+    if (userChoice === questionBank[questionBankIndex].answer) {
+        correctCount += 1;
+    }
+    if (userChoice !== questionBank[questionBankIndex].answer) {
+        timeLeft -= 1;
+    }
+    insertQuestion();
+});
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) { // DONE!
-    console.log("here is the start button in action");
+    // connects audio to JS
+    const boop = document.getElementById("boop");
+    boop.volume = 0.2;
     boop.play();
-    quiz();
+    insertQuestion();
     makeInactive(openingPage);
     makeActive(quizPage);
     makeInactive(leaderboardPage);
+    timeRemaining();
 });
