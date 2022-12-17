@@ -1,0 +1,50 @@
+:root {
+    /* palette 1: https://www.colourlovers.com/palette/4889051/colorado */
+    --blackish: #00060D;
+    --dark-purple: #180829;
+    --maroon: #541438;
+    --carnation: #F25A6B;
+    --beige: #CCB4A9;
+    /* palette 2: https://www.colourlovers.com/palette/580974/Adrift_in_Dreams */
+    --bright-green: #CFF09E;
+    --sea-foam: #A8DBA8;
+    --sea-green: #79BD9A;
+    --blue-green: #3B8686;
+    --navy-blue: #0B486B;
+}
+
+body {
+    background-color: var(--navy-blue);
+    color: var(--navy-blue);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+header, footer {
+    background-color: var(--navy-blue);
+}
+
+h1, h2 {
+    color: var(--bright-green);
+}
+
+button {
+    background-color: var(--navy-blue);
+    color: var(--bright-green);
+    font-weight: bold;
+    border-radius: 10px;
+    border: 0px;
+    height: 30px;
+}
+
+#opening-page {
+    background-color: var(--sea-foam);
+}
+
+#quiz-page {
+    background-color: var(--sea-green);
+}
+
+#leaderboard-page {
+    background-color: var(--blue-green);
+}
