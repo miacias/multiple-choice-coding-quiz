@@ -4,11 +4,11 @@
 const questionBank = [
     {
         question: "Inside the HTML document, where do you place your JavaScript code?",
-        responses: ["in the <head> element", "in the <link> element", "in the <footer> element", "in the <script> element"],
-        answer: "in the <script> element",
+        responses: ["in the HEAD element", "in the LINK element", "in the FOOTER element", "in the SCRIPT element"],
+        answer: "in the SCRIPT element",
         // give a set timer to receive feedback then unpause timer and next question
-        correctFeedback: "Nice job! JavaScript is placed inside the <script> element of the HTML Document.",
-        incorrectFeedback: "JavaScript is stored in a <script> element in HTML."
+        correctFeedback: "Nice job! JavaScript is placed inside the SCRIPT element of the HTML Document.",
+        incorrectFeedback: "JavaScript is stored in a SCRIPT element in HTML."
     },
     // {
     //     question: "What operator is used to assign a value to a declared variable?",
@@ -46,6 +46,8 @@ var questionBankLength = questionBank.length;
 var questionBankIndex = 0;
 var correctCount = 0;
 var timeLeft;
+var responseOptions;
+
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -89,31 +91,38 @@ function timeRemaining() { // only visible after clicking Start Button
     }, 1000);
 }
 
+// empties question text, removes response buttons
+function removeQuestion() {
+    question.replace(); // change this to just remove the text (.remove deletes an HTML tag completely)
+    // use a for loop to .remove each response button
+    // if statement to insert next question or not
+}
+
 function insertQuestion() {
     // access HTML question section
     var question = document.querySelector(".question");
     var responseBox = document.querySelector(".responses");
     var responseOptions
     question.textContent = (questionBank[questionBankIndex].question); // questionBankIndex is number index location
-    for (var r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
+    for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
         responseBox.append(responseOptions);
         responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
     }
-}
 
-// triggers next question by incrementing questionBankIndex +1
-responseOptions.addEventListener("click", function(event) {
-    questionBankIndex += 1;
-    var userChoice = document.querySelector(".responses").value;
-    if (userChoice === questionBank[questionBankIndex].answer) {
-        correctCount += 1;
-    }
-    if (userChoice !== questionBank[questionBankIndex].answer) {
-        timeLeft -= 1;
-    }
-    insertQuestion();
-});
+    // triggers next question by incrementing questionBankIndex +1
+    responseBox.addEventListener("click", function(event) {
+        var userChoice = event.target.textContent;
+        if (userChoice === questionBank[questionBankIndex].answer) {
+            correctCount += 1;
+        }
+        if (userChoice !== questionBank[questionBankIndex].answer) {
+            timeLeft -= 1;
+        }
+        questionBankIndex += 1;
+        removeQuestion();
+    });
+}
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) { // DONE!
