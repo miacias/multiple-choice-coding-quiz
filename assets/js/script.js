@@ -39,10 +39,9 @@ var openingPage = document.querySelector("#opening-page");
 var quizPage = document.querySelector("#quiz-page");
 var leaderboardPage = document.querySelector("#leaderboard-page");
 var page = document.querySelector(".page"); // all page types
-var questionBankLength = questionBank.length;
 var questionBankIndex = 0;
 var correctCount = 0;
-var timeLeft;
+var secondsLeft;
 var responseOptions;
 var question;
 var responseBox;
@@ -54,7 +53,7 @@ function makeInactive(page) { // parameter allows running on different page type
         page.style.visibility = "hidden";
         page.style.display = "none";
     }
-}
+};
 
 function makeActive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -63,26 +62,29 @@ function makeActive(page) { // parameter allows running on different page types
         page.style.visibility = "visible";
         page.style.display = "block";
     }
-}
+};
 
 // default view of page with only OPENING as ACTIVE
 function opener() {
     makeActive(openingPage);
     makeInactive(quizPage);
     makeInactive(leaderboardPage);
-}
+};
 opener();
+
+// function leaderBoard() {
+
+// };
 
 // timer countdown
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
-    var secondsLeft = 60;
+    secondsLeft = 60;
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft + " seconds";
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            // create function for lose case to call in this line
             var timerDone = document.querySelector(".time-remaining");
             timerDone.textContent = "Time is up!"; // replaces countdown and "time left" text
         }
@@ -93,15 +95,20 @@ function timeRemaining() { // only visible after clicking Start Button
 function removeQuestion() {
     question.replaceChildren();
     responseBox.replaceChildren();
+    // if (questionBank.length === questionBankIndex) {
+    //     leaderBoard();
+    // } else {
+    //     insertQuestion();
+    // }
     insertQuestion();
-}
+};
 
 function insertQuestion() {
     // access HTML question section
     question = document.querySelector(".question");
     responseBox = document.querySelector(".responses");
     var responseOptions
-    question.textContent = (questionBank[questionBankIndex].question); // questionBankIndex is number index location
+    question.textContent = (questionBank[questionBankIndex].question);
     for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
         responseBox.append(responseOptions);
@@ -112,25 +119,25 @@ function insertQuestion() {
     responseBox.addEventListener("click", function(event) {
         var userChoice = event.target.textContent;
         if (userChoice === questionBank[questionBankIndex].answer) {
-            correctCount += 1;
+            correctCount ++;
         }
         if (userChoice !== questionBank[questionBankIndex].answer) {
-            timeLeft -= 1;
+            secondsLeft --; // counting incorrectly?
         }
-        questionBankIndex += 1;
-        removeQuestion();
-    });
-}
+    })
+    questionBankIndex ++;
+    removeQuestion();
+};
 
 // START triggers game, timer, and show/hide pages
-startButton.addEventListener("click", function(event) { // DONE!
+startButton.addEventListener("click", function(event) {
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
     boop.play();
     insertQuestion();
+    timeRemaining();
     makeInactive(openingPage);
     makeActive(quizPage);
     makeInactive(leaderboardPage);
-    timeRemaining();
 });
