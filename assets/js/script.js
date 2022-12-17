@@ -42,6 +42,13 @@ var openingPage = document.querySelector("#opening-page");
 var quizPage = document.querySelector("#quiz-page");
 var leaderboardPage = document.querySelector("#leaderboard-page");
 var page = document.querySelector(".page"); // all page types
+var questionBankLength = questionBank.length;
+var questionBankIndex;
+var correctCount;
+var incorrectCount;
+var penalty;
+var currentTime;
+var timeRemaining = currentTime -= penalty;
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -85,6 +92,7 @@ function timeRemaining() { // only visible after clicking Start Button
     }, 1000);
 }
 
+
 // use for loop to insert question properties based on questionBank array. if correct, show win text and +1 on array index location. if incorrect, show lose text and +1 on array index location.
 function insertQuestion() {
     // access HTML question section
@@ -92,12 +100,12 @@ function insertQuestion() {
     var responseBox = document.querySelector(".responses");
     var responseOptions
     // for (var q = 0; q < questionBank.length; q++) {
-        question.textContent = (questionBank[0].question);
+        question.textContent = (questionBank[questionBankIndex].question);
 
-        for (var r = 0; r < questionBank[0].responses.length; r++) {
+        for (var r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
             responseOptions = document.createElement("button");
             responseBox.append(responseOptions);
-            responseOptions.textContent = (questionBank[0].responses[r]); // r counts index number of responses, so each response gets printed in each button
+            responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
             responseOptions.addEventListener("click", function(event) {
                 // switch to next question
                 // else leaderboard page?
@@ -116,21 +124,22 @@ function insertQuestion() {
 }
 
 // call insertQuestion and other things? maybe use eventListener in an IF STATEMENT to verify if user selects correct response
-function quiz() {
-    insertQuestion();
-}
+// function quiz() {
+//     if () {
+//         insertQuestion();
+//     }
+// }
+
+
 
 // connects audio to JS
 const boop = document.getElementById("boop");
 boop.volume = 0.2;
 
 // START triggers game, timer, and show/hide pages
-startButton.addEventListener("click", function(event) {
+startButton.addEventListener("click", function(event) { // DONE!
     console.log("here is the start button in action");
     boop.play();
-    // var page = event.target;
-    // const dataAttribute = page.getAttribute("data-view");
-    timeRemaining();
     quiz();
     makeInactive(openingPage);
     makeActive(quizPage);

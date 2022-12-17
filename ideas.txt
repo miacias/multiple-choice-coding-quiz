@@ -9,22 +9,12 @@ OVER-ARCHING GOALS:
 PSEUDO-CODE:
 
 √ create start button (HTML)
-    √ add event listener to start button 
-        √ begin timer on click
-        √ call quiz function
-        √ hide opening-page and leaderboard-page
-√ create timer that counts down per 1000milliseconds from a set start time and stops at 0s
-    √ set time begins at 60s (15 questions = 4s per question)
+- create timer that counts down per 1000milliseconds from a set start time and stops at 0s
+    - set time begins at 60s (15 questions = 4s per question)
+    - add event listener to start button to begin timer on click AND call quiz function
 - create bank of 15 questions (provided) as objects with correct and incorrect responses set to true or false? or as ABCD?
     - create bank of 2-4 possible choices per question
-    √ put all question bank objects in an array?
-    - switch question function: 
-        - call: insert question content function (see below)
-        - if question box is empty, insert first question. if question box already has a question, insert next question, (else hide/return and show leaderboard and commit score to local storage?)
-            - if there are questions left, run function again but +1 in index location of array of question bank. (i = 0; i < array.length; ) return question(); to repeat inserting a question
-            - be wary of recursion loops!
-    - insert question content function: for loop inserts question details into HTML
-
+    - put all question bank objects in an array?
 - if response is correct, replace question with next question, print "correct" to HTML, and set internal counters for number of points earned
 - if response is incorrect, timer loses 1s, replace question with next question, print "incorrect" to HTML
 - if question bank has no more questions left, win condition
