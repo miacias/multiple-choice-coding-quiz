@@ -93,9 +93,15 @@ submit.addEventListener("click", function(event) {
         score: correctCount,
     }
     everyone.push(userData);
-    var finalBoard = everyone.sort(compareNumbers);
+    var sortBoard = everyone.sort(compareNumbers);
     // set localStorage
-    localStorage.setItem("board", JSON.stringify(finalBoard));
+    localStorage.setItem("board", JSON.stringify(sortBoard));
+    var finalBoard = document.querySelector(".user-scores");
+    // get localStorage and put into HTML via for loop
+    for (let s = 0; s < everyone.length; s++) {
+        var individualScores = document.createElement("div")
+        finalBoard.append(individualScores).textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score;
+    }
 })
 
 home.addEventListener("click", function() {
