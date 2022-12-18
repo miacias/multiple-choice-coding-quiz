@@ -6,7 +6,7 @@ const questionBank = [
         question: "Inside the HTML document, where do you place your JavaScript code?",
         responses: ["in the HEAD element", "in the LINK element", "in the FOOTER element", "in the SCRIPT element"],
         answer: "in the SCRIPT element",
-        // give a set timer to receive feedback then unpause timer and next question
+        // create a pause to receive feedback then unpause with next question
         correctFeedback: "Nice job! JavaScript is placed inside the SCRIPT element of the HTML Document.",
         incorrectFeedback: "JavaScript is stored in a SCRIPT element in HTML."
     },
@@ -123,20 +123,16 @@ clear.addEventListener("click", function() {
 })
 
 // timer countdown
-function timeRemaining() { // only visible after clicking Start Button
+function quizTimer() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
-    secondsLeft = 60;
     timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft + " seconds";
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            var timerDone = document.querySelector(".time-remaining");
-            timerDone.textContent = "Time is up!"; // replaces countdown and "time left" text
+            alert("Time is up!");
+            leaderBoard();
         }
-        // if (questionBankIndex === questionBank.length - 1) {
-        //     clearInterval(timerInterval);
-        // }
     }, 1000);
 }
 
@@ -170,13 +166,11 @@ responseBox.addEventListener("click", function(event) {
     }
     if (questionBankIndex < questionBank.length - 1) {
         questionBankIndex ++;
+        // pause quiz, show feedback for a moment, remove feedback and unpause quiz
         removeQuestion();
     } else if (questionBankIndex === questionBank.length - 1) {
         leaderBoard();
         clearInterval(timerInterval);
-    }
-    if (secondsLeft === 0) {
-        leaderBoard();
     }
 })
 
@@ -185,13 +179,13 @@ startButton.addEventListener("click", function(event) {
     correctCount = 0;
     questionBankIndex = 0;
     clearInterval(timerInterval);
-    secondsLeft = 60;
+    secondsLeft = 3;
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
     boop.play();
     insertQuestion();
-    timeRemaining();
+    quizTimer();
     makeInactive(openingPage);
     makeActive(quizPage);
     makeInactive(leaderboardPage);
