@@ -34,18 +34,20 @@ const questionBank = [
 ];
 
 // access to HTML sections
-var startButton = document.querySelector(".start-button");
-var openingPage = document.querySelector("#opening-page");
-var quizPage = document.querySelector("#quiz-page");
-var leaderboardPage = document.querySelector("#leaderboard-page");
-var page = document.querySelector(".page"); // all page types
-var questionBankIndex = 0;
+const startButton = document.querySelector(".start-button");
+const openingPage = document.querySelector("#opening-page");
+const quizPage = document.querySelector("#quiz-page");
+const leaderboardPage = document.querySelector("#leaderboard-page");
+const page = document.querySelector(".page"); // all page types
+var responseBox = document.querySelector(".responses");
+const home = document.querySelector(".home");
+// recycled variables
+var questionBankIndex;
 var correctCount;
 var secondsLeft;
+var timerInterval;
 var responseOptions;
 var question;
-var responseBox = document.querySelector(".responses");
-var home = document.querySelector(".home");
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -107,6 +109,8 @@ submit.addEventListener("click", function(event) {
 })
 
 home.addEventListener("click", function() {
+    question.replaceChildren();
+    responseBox.replaceChildren();
     opener();
 })
 
@@ -114,7 +118,7 @@ home.addEventListener("click", function() {
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
     secondsLeft = 60;
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft + " seconds";
         if (secondsLeft === 0) {
@@ -122,6 +126,9 @@ function timeRemaining() { // only visible after clicking Start Button
             var timerDone = document.querySelector(".time-remaining");
             timerDone.textContent = "Time is up!"; // replaces countdown and "time left" text
         }
+        // if (questionBankIndex === questionBank.length - 1) {
+        //     clearInterval(timerInterval);
+        // }
     }, 1000);
 }
 
@@ -158,6 +165,7 @@ responseBox.addEventListener("click", function(event) {
         removeQuestion();
     } else if (questionBankIndex === questionBank.length - 1) {
         leaderBoard();
+        clearInterval(timerInterval);
     }
     if (secondsLeft === 0) {
         leaderBoard();
@@ -167,6 +175,9 @@ responseBox.addEventListener("click", function(event) {
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
     correctCount = 0;
+    questionBankIndex = 0;
+    clearInterval(timerInterval);
+    secondsLeft = 60;
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
