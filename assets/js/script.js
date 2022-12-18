@@ -122,11 +122,13 @@ function insertQuestion() {
             correctCount ++;
         }
         if (userChoice !== questionBank[questionBankIndex].answer) {
-            secondsLeft --; // counting incorrectly?
+            secondsLeft --;
+        }
+        if (questionBankIndex < questionBank.length) {
+            questionBankIndex ++;
+            removeQuestion();
         }
     })
-    questionBankIndex ++;
-    removeQuestion();
 };
 
 // START triggers game, timer, and show/hide pages
