@@ -97,9 +97,9 @@ submit.addEventListener("click", function(event) {
         score: correctCount,
     }
     everyone.push(userData);
-    var sortBoard = everyone.sort(compareNumbers);
+    var sortBoard = everyone.sort(compareNumbers).reverse();
     // set localStorage
-    sortBoard = localStorage.getItem("board");
+    var board = localStorage.getItem("board");
     localStorage.setItem("board", sortBoard);
     var finalBoard = document.querySelector(".user-scores");
     finalBoard.replaceChildren();
