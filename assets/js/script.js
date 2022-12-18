@@ -81,7 +81,7 @@ function leaderBoard() {
     makeInactive(openingPage);
 };
 
-var everyone = [];
+var everyone = []; // placeholder for all userData
 
 // compares one object to another by score by referencing everyone[]
 function compareNumbers(userDataA, userDataB) {
@@ -99,18 +99,14 @@ submit.addEventListener("click", function(event) {
     everyone.push(userData);
     var sortBoard = everyone.sort(compareNumbers).reverse();
     // set localStorage
-    var board = JSON.parse(localStorage.getItem("board")); // possibly not needed
-    // localStorage.setItem("board", sortBoard); // this works to save sorted data to key
-    localStorage.setItem("board", JSON.stringify(sortBoard));
+    var board = JSON.parse(localStorage.getItem("board")); // designates localStorage as original data format (array of objects) from its stringified stored form
+    localStorage.setItem("board", JSON.stringify(sortBoard)); // saves sorted data as string
     var finalBoard = document.querySelector(".user-scores");
     finalBoard.replaceChildren();
     // get localStorage and put into HTML via for loop
     for (let s = 0; s < everyone.length; s++) {
         var individualScores = document.createElement("div");
         finalBoard.append(individualScores);
-        // individualScores.textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score; // this works by directly accessing the array of userData. does NOT persist in localStorage
-        // individualScores.textContent = "Player: " + localStorage.getItem("board"[s].initials) + " Score: " + localStorage.getItem("board"[s].score); // returns null (b/c localStorage can only return values in string format?)
-        // individualScores.textContent = "Player: " + JSON.parse(localStorage.getItem("board")); // object Object
         individualScores.textContent = "Player " + board[s].initials + " Score: " + board[s].score; // success!
     }
 })
@@ -119,6 +115,11 @@ home.addEventListener("click", function() {
     question.replaceChildren();
     responseBox.replaceChildren();
     opener();
+})
+
+var clear = document.querySelector(".reset-board");
+clear.addEventListener("click", function() {
+    localStorage.clear();
 })
 
 // timer countdown
