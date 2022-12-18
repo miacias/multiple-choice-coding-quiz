@@ -6,7 +6,7 @@ const questionBank = [
         question: "Inside the HTML document, where do you place your JavaScript code?",
         responses: ["in the HEAD element", "in the LINK element", "in the FOOTER element", "in the SCRIPT element"],
         answer: "in the SCRIPT element",
-        // give a set timer to receive feedback then unpause timer and next question
+        // create a pause to receive feedback then unpause with next question
         correctFeedback: "Nice job! JavaScript is placed inside the SCRIPT element of the HTML Document.",
         incorrectFeedback: "JavaScript is stored in a SCRIPT element in HTML."
     },
@@ -34,18 +34,20 @@ const questionBank = [
 ];
 
 // access to HTML sections
-var startButton = document.querySelector(".start-button");
-var openingPage = document.querySelector("#opening-page");
-var quizPage = document.querySelector("#quiz-page");
-var leaderboardPage = document.querySelector("#leaderboard-page");
-var page = document.querySelector(".page"); // all page types
-var questionBankLength = questionBank.length;
-var questionBankIndex = 0;
-var correctCount = 0;
-var timeLeft;
+const startButton = document.querySelector(".start-button");
+const openingPage = document.querySelector("#opening-page");
+const quizPage = document.querySelector("#quiz-page");
+const leaderboardPage = document.querySelector("#leaderboard-page");
+const page = document.querySelector(".page"); // all page types
+var responseBox = document.querySelector(".responses");
+const home = document.querySelector(".home");
+// recycled variables
+var questionBankIndex;
+var correctCount;
+var secondsLeft;
+var timerInterval;
 var responseOptions;
 var question;
-var responseBox;
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -54,7 +56,7 @@ function makeInactive(page) { // parameter allows running on different page type
         page.style.visibility = "hidden";
         page.style.display = "none";
     }
-}
+};
 
 function makeActive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -63,28 +65,73 @@ function makeActive(page) { // parameter allows running on different page types
         page.style.visibility = "visible";
         page.style.display = "block";
     }
-}
+};
 
 // default view of page with only OPENING as ACTIVE
 function opener() {
     makeActive(openingPage);
     makeInactive(quizPage);
     makeInactive(leaderboardPage);
-}
+};
 opener();
 
+function leaderBoard() {
+    makeInactive(quizPage);
+    makeActive(leaderboardPage);
+    makeInactive(openingPage);
+};
+
+var everyone = []; // placeholder for all userData
+
+// compares one object to another by score by referencing everyone[]
+function compareNumbers(userDataA, userDataB) {
+    return userDataA.score - userDataB.score;
+}
+
+var submit = document.querySelector(".submit-initials");
+submit.addEventListener("click", function(event) {
+    event.preventDefault();
+    // var initials = document.querySelector("#initials");
+    var userData = {
+        initials: initials.value,
+        score: correctCount,
+    }
+    everyone.push(userData);
+    var sortBoard = everyone.sort(compareNumbers).reverse();
+    // set localStorage
+    var board = JSON.parse(localStorage.getItem("board")); // designates localStorage as original data format (array of objects) from its stringified stored form
+    localStorage.setItem("board", JSON.stringify(sortBoard)); // saves sorted data as string
+    var finalBoard = document.querySelector(".user-scores");
+    finalBoard.replaceChildren();
+    // get localStorage and put into HTML via for loop
+    for (let s = 0; s < everyone.length; s++) {
+        var individualScores = document.createElement("div");
+        finalBoard.append(individualScores);
+        individualScores.textContent = "Player " + board[s].initials + " Score: " + board[s].score; // success!
+    }
+})
+
+home.addEventListener("click", function() {
+    question.replaceChildren();
+    responseBox.replaceChildren();
+    opener();
+})
+
+var clear = document.querySelector(".reset-board");
+clear.addEventListener("click", function() {
+    localStorage.clear();
+})
+
 // timer countdown
-function timeRemaining() { // only visible after clicking Start Button
+function quizTimer() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
-    var secondsLeft = 60;
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft + " seconds";
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            // create function for lose case to call in this line
-            var timerDone = document.querySelector(".time-remaining");
-            timerDone.textContent = "Time is up!"; // replaces countdown and "time left" text
+            alert("Time is up!");
+            leaderBoard();
         }
     }, 1000);
 }
@@ -94,43 +141,52 @@ function removeQuestion() {
     question.replaceChildren();
     responseBox.replaceChildren();
     insertQuestion();
-}
+};
 
 function insertQuestion() {
     // access HTML question section
     question = document.querySelector(".question");
     responseBox = document.querySelector(".responses");
     var responseOptions
-    question.textContent = (questionBank[questionBankIndex].question); // questionBankIndex is number index location
+    question.textContent = (questionBank[questionBankIndex].question);
     for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
         responseBox.append(responseOptions);
         responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
     }
+};
 
-    // triggers next question by incrementing questionBankIndex +1
-    responseBox.addEventListener("click", function(event) {
-        var userChoice = event.target.textContent;
-        if (userChoice === questionBank[questionBankIndex].answer) {
-            correctCount += 1;
-        }
-        if (userChoice !== questionBank[questionBankIndex].answer) {
-            timeLeft -= 1;
-        }
-        questionBankIndex += 1;
+// triggers next question by incrementing questionBankIndex +1
+responseBox.addEventListener("click", function(event) {
+    var userChoice = event.target.textContent;
+    if (userChoice === questionBank[questionBankIndex].answer) {
+        correctCount ++;
+    } else {
+        secondsLeft --;
+    }
+    if (questionBankIndex < questionBank.length - 1) {
+        questionBankIndex ++;
+        // pause quiz, show feedback for a moment, remove feedback and unpause quiz
         removeQuestion();
-    });
-}
+    } else if (questionBankIndex === questionBank.length - 1) {
+        leaderBoard();
+        clearInterval(timerInterval);
+    }
+})
 
 // START triggers game, timer, and show/hide pages
-startButton.addEventListener("click", function(event) { // DONE!
+startButton.addEventListener("click", function(event) {
+    correctCount = 0;
+    questionBankIndex = 0;
+    clearInterval(timerInterval);
+    secondsLeft = 3;
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
     boop.play();
     insertQuestion();
+    quizTimer();
     makeInactive(openingPage);
     makeActive(quizPage);
     makeInactive(leaderboardPage);
-    timeRemaining();
 });
