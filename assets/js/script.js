@@ -72,14 +72,30 @@ function opener() {
 };
 opener();
 
-// function leaderBoard() {
+function leaderBoard() {
+    makeInactive(quizPage);
+    makeActive(leaderboardPage);
+    makeInactive(openingPage);
+    // var home = querySelector(".home");
+    // home.click(opener());
+    var form = document.querySelector(".form");
+    var userInitials = document.querySelector("#initials");
+    var board = [];
+    var userData = {
+        initials: userInitials.value,
+        score: correctCount,
+    }
+    board.push(userData);
+    board.sort();
+    // set localStorage
+    localStorage.setItem("board")
 
-// };
+};
 
 // timer countdown
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
-    secondsLeft = 60;
+    secondsLeft = 2;
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft + " seconds";
@@ -95,11 +111,6 @@ function timeRemaining() { // only visible after clicking Start Button
 function removeQuestion() {
     question.replaceChildren();
     responseBox.replaceChildren();
-    // if (questionBank.length === questionBankIndex) {
-    //     leaderBoard();
-    // } else {
-    //     insertQuestion();
-    // }
     insertQuestion();
 };
 
@@ -121,13 +132,17 @@ responseBox.addEventListener("click", function(event) {
     var userChoice = event.target.textContent;
     if (userChoice === questionBank[questionBankIndex].answer) {
         correctCount ++;
-    }
-    if (userChoice !== questionBank[questionBankIndex].answer) {
+    } else {
         secondsLeft --;
     }
-    if (questionBankIndex < questionBank.length) {
+    if (questionBankIndex < questionBank.length - 1) {
         questionBankIndex ++;
         removeQuestion();
+    } else if (questionBankIndex === questionBank.length - 1) {
+        leaderBoard();
+    }
+    if (secondsLeft === 0) {
+        leaderBoard();
     }
 })
 
