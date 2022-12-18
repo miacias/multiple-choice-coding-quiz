@@ -11,21 +11,33 @@
     --sea-green: #79BD9A;
     --blue-green: #3B8686;
     --navy-blue: #0B486B;
+    --margin1: 1%;
+
 }
 
 body {
     background-color: var(--navy-blue);
-    color: var(--navy-blue);
+    color: var(--bright-green);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
 }
 
 header, footer {
     background-color: var(--navy-blue);
+    text-align: center;
 }
 
 h1, h2 {
     color: var(--bright-green);
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top-right-radius: 10em;
+    margin: 4%;
+    padding: 4% 8% 2% 2%; /*TRBL*/
 }
 
 button {
