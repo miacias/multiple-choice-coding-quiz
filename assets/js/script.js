@@ -99,16 +99,19 @@ submit.addEventListener("click", function(event) {
     everyone.push(userData);
     var sortBoard = everyone.sort(compareNumbers).reverse();
     // set localStorage
-    var board = localStorage.getItem("board");
-    localStorage.setItem("board", sortBoard);
+    var board = JSON.parse(localStorage.getItem("board")); // possibly not needed
+    // localStorage.setItem("board", sortBoard); // this works to save sorted data to key
+    localStorage.setItem("board", JSON.stringify(sortBoard));
     var finalBoard = document.querySelector(".user-scores");
     finalBoard.replaceChildren();
     // get localStorage and put into HTML via for loop
     for (let s = 0; s < everyone.length; s++) {
         var individualScores = document.createElement("div");
         finalBoard.append(individualScores);
-        individualScores.textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score;
-        // individualScores.textContent = "Player: " + localStorage.getItem()everyone[s].initials + " Score: " + everyone[s].score;
+        // individualScores.textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score; // this works by directly accessing the array of userData. does NOT persist in localStorage
+        // individualScores.textContent = "Player: " + localStorage.getItem("board"[s].initials) + " Score: " + localStorage.getItem("board"[s].score); // returns null (b/c localStorage can only return values in string format?)
+        // individualScores.textContent = "Player: " + JSON.parse(localStorage.getItem("board")); // object Object
+        individualScores.textContent = "Player " + board[s].initials + " Score: " + board[s].score; // success!
     }
 })
 
