@@ -36,8 +36,9 @@ h1, h2 {
     flex-wrap: wrap;
     justify-content: center;
     border-top-right-radius: 10em;
-    margin: 4%;
-    padding: 4% 8% 2% 2%; /*TRBL*/
+    box-shadow: 1em 1em 2em 0em var(--blackish), inset 3em -0.5em #876b7b;
+    margin: 6% 6% 8% 2%; /*TRBL*/
+    padding: 4% 8% 2% 5em; /*last value is EM because inner box shadow is EM*/
 }
 
 button {
@@ -47,10 +48,15 @@ button {
     border-radius: 10px;
     border: 0px;
     height: 30px;
+    word-break: normal;
+    overflow-wrap: break-word;
+    padding: 2%;
+    vertical-align: middle; /*trying to fix text to appear at centered button height*/
 }
 
 #opening-page {
     background-color: var(--sea-foam);
+    color: var(--navy-blue);
 }
 
 #quiz-page {

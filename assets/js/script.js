@@ -179,7 +179,7 @@ startButton.addEventListener("click", function(event) {
     correctCount = 0;
     questionBankIndex = 0;
     clearInterval(timerInterval);
-    secondsLeft = 3;
+    secondsLeft = 60;
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
