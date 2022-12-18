@@ -45,6 +45,7 @@ var secondsLeft;
 var responseOptions;
 var question;
 var responseBox = document.querySelector(".responses");
+var home = document.querySelector(".home");
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -76,25 +77,35 @@ function leaderBoard() {
     makeInactive(quizPage);
     makeActive(leaderboardPage);
     makeInactive(openingPage);
-    // var home = querySelector(".home");
-    // home.click(opener());
-    var form = document.querySelector(".form");
-    var userInitials = document.querySelector("#initials");
-    var board = [];
+};
+
+function compareNumbers(a, b) {
+    return a - b;
+  }
+
+var everyone = [];
+var submit = document.querySelector(".submit-initials");
+submit.addEventListener("click", function(event) {
+    event.preventDefault();
+    var initials = document.querySelector("#initials");
     var userData = {
-        initials: userInitials.value,
+        initials: initials.value,
         score: correctCount,
     }
-    board.push(userData);
-    var finalBoard = board.sort();
+    everyone.push(userData);
+    var finalBoard = everyone.sort(compareNumbers);
     // set localStorage
-    localStorage.setItem("board"), JSON.stringify(finalBoard);
-};
+    localStorage.setItem("board", JSON.stringify(finalBoard));
+})
+
+home.addEventListener("click", function() {
+    opener();
+})
 
 // timer countdown
 function timeRemaining() { // only visible after clicking Start Button
     var timerEl = document.querySelector(".time-remaining");
-    secondsLeft = 2;
+    secondsLeft = 60;
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft + " seconds";
