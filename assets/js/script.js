@@ -81,11 +81,13 @@ function leaderBoard() {
     makeInactive(openingPage);
 };
 
-function compareNumbers(a, b) {
-    return a - b;
+var everyone = [];
+
+// compares one object to another by score by referencing everyone[]
+function compareNumbers(userDataA, userDataB) {
+    return userDataA.score - userDataB.score;
 }
 
-var everyone = [];
 var submit = document.querySelector(".submit-initials");
 submit.addEventListener("click", function(event) {
     event.preventDefault();
@@ -97,7 +99,8 @@ submit.addEventListener("click", function(event) {
     everyone.push(userData);
     var sortBoard = everyone.sort(compareNumbers);
     // set localStorage
-    localStorage.setItem("board", JSON.stringify(sortBoard));
+    sortBoard = localStorage.getItem("board");
+    localStorage.setItem("board", sortBoard);
     var finalBoard = document.querySelector(".user-scores");
     finalBoard.replaceChildren();
     // get localStorage and put into HTML via for loop
@@ -105,6 +108,7 @@ submit.addEventListener("click", function(event) {
         var individualScores = document.createElement("div");
         finalBoard.append(individualScores);
         individualScores.textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score;
+        // individualScores.textContent = "Player: " + localStorage.getItem()everyone[s].initials + " Score: " + everyone[s].score;
     }
 })
 
