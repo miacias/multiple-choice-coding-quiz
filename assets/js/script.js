@@ -86,10 +86,9 @@ function leaderBoard() {
         score: correctCount,
     }
     board.push(userData);
-    board.sort();
+    var finalBoard = board.sort();
     // set localStorage
-    localStorage.setItem("board")
-
+    localStorage.setItem("board"), JSON.stringify(finalBoard);
 };
 
 // timer countdown
