@@ -44,7 +44,7 @@ var correctCount = 0;
 var secondsLeft;
 var responseOptions;
 var question;
-var responseBox;
+var responseBox = document.querySelector(".responses");
 
 function makeInactive(page) { // parameter allows running on different page types
     const dataAttribute = page.getAttribute("data-view");
@@ -114,22 +114,22 @@ function insertQuestion() {
         responseBox.append(responseOptions);
         responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
     }
-
-    // triggers next question by incrementing questionBankIndex +1
-    responseBox.addEventListener("click", function(event) {
-        var userChoice = event.target.textContent;
-        if (userChoice === questionBank[questionBankIndex].answer) {
-            correctCount ++;
-        }
-        if (userChoice !== questionBank[questionBankIndex].answer) {
-            secondsLeft --;
-        }
-        if (questionBankIndex < questionBank.length) {
-            questionBankIndex ++;
-            removeQuestion();
-        }
-    })
 };
+
+// triggers next question by incrementing questionBankIndex +1
+responseBox.addEventListener("click", function(event) {
+    var userChoice = event.target.textContent;
+    if (userChoice === questionBank[questionBankIndex].answer) {
+        correctCount ++;
+    }
+    if (userChoice !== questionBank[questionBankIndex].answer) {
+        secondsLeft --;
+    }
+    if (questionBankIndex < questionBank.length) {
+        questionBankIndex ++;
+        removeQuestion();
+    }
+})
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
