@@ -40,7 +40,7 @@ var quizPage = document.querySelector("#quiz-page");
 var leaderboardPage = document.querySelector("#leaderboard-page");
 var page = document.querySelector(".page"); // all page types
 var questionBankIndex = 0;
-var correctCount = 0;
+var correctCount;
 var secondsLeft;
 var responseOptions;
 var question;
@@ -81,13 +81,13 @@ function leaderBoard() {
 
 function compareNumbers(a, b) {
     return a - b;
-  }
+}
 
 var everyone = [];
 var submit = document.querySelector(".submit-initials");
 submit.addEventListener("click", function(event) {
     event.preventDefault();
-    var initials = document.querySelector("#initials");
+    // var initials = document.querySelector("#initials");
     var userData = {
         initials: initials.value,
         score: correctCount,
@@ -97,10 +97,12 @@ submit.addEventListener("click", function(event) {
     // set localStorage
     localStorage.setItem("board", JSON.stringify(sortBoard));
     var finalBoard = document.querySelector(".user-scores");
+    finalBoard.replaceChildren();
     // get localStorage and put into HTML via for loop
     for (let s = 0; s < everyone.length; s++) {
-        var individualScores = document.createElement("div")
-        finalBoard.append(individualScores).textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score;
+        var individualScores = document.createElement("div");
+        finalBoard.append(individualScores);
+        individualScores.textContent = "Player: " + everyone[s].initials + " Score: " + everyone[s].score;
     }
 })
 
@@ -164,6 +166,7 @@ responseBox.addEventListener("click", function(event) {
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
+    correctCount = 0;
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
