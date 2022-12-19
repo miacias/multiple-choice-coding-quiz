@@ -12,7 +12,11 @@
 
 ## Usage 
 
- 
+ 1. Upon opening the site and reading the introduction, click Start.
+ 2. Race through as many questions as you can by clicking on the most appropriate response to answer each question while time counts down.
+ 3. When time has run out, the leaderboard page is presented. Enter initials in the form submission box and click Submit.
+ 4. Previous scores will appear on the leaderboard page after each submission.
+ 5. To play again, click Home. Alternatively, to erase the leaderboard and start fresh, click Clear Scores.
  
 
 Provide instructions and examples for use. Include screenshots as needed. 
@@ -51,13 +55,7 @@ Artists:
  
 
 ## License 
-
- 
- 
-
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/). 
-
- 
+Please refer to the LICENSE in the repo.
  
 
 --- 
