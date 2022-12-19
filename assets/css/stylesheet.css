@@ -11,6 +11,9 @@
     --sea-green: #79BD9A;
     --blue-green: #3B8686;
     --navy-blue: #0B486B;
+    /* other */
+    --deep-magenta: #763a5c;
+    --neon-green: #8dff4f;
     --margin1: 1%;
 
 }
@@ -32,12 +35,10 @@ h1, h2 {
 }
 
 .page {
-    /* display: flex;
-    flex-wrap: wrap; */
     justify-content: center;
     border-top-right-radius: 10em;
     box-shadow: 1em 1em 2em 0em var(--blackish), inset 3em -0.5em #876b7b;
-    margin: 6% 6% 8% 2%; /*TRBL*/
+    margin: 6% 6% 3em 2%; /*TRBL*/
     padding: 4% 8% 2% 5em; /*last value is EM because inner box shadow is EM*/
 }
 
@@ -54,20 +55,19 @@ h1, h2 {
     display: flex;
     flex-wrap: wrap;
     background-color: var(--sea-green);
+    flex-direction: column;
 }
 
 .responses {
-    display: flex;
+    display: block;
     margin: 4%;
 }
 
 .responses button {
-    flex: 3;
     margin: 1%;
 }
 
 .time-remaining {
-    flex: 1;
     text-align: end;
 }
 
@@ -83,6 +83,54 @@ button {
     width: fit-content;
 }
 
+button:hover {
+    background-color: var(--deep-magenta);
+}
+
 #leaderboard-page {
+    flex-direction: column;
+    align-items: center;
     background-color: var(--blue-green);
+}
+
+form {
+    margin-bottom: 2%;
+}
+
+.scoreboard {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    width: 100%;
+    margin-bottom: 2%;
+    justify-content: center;
+}
+
+.user-scores div {
+    width: 50%;
+    margin-bottom: 2%;
+    text-align: center;
+    box-shadow: 0em 0em 400em 0em var(--sea-green), inset 0em 0em 3em 0em var(--sea-green);
+    padding: 1%;
+    border-radius: 0.5em;
+}
+
+.user-scores div:hover {
+    box-shadow: inset 0em 0em 3em 0em var(--neon-green);
+}
+
+.scoreboard button {
+    /* display: inline; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 30%;
+    margin: 1%;
+}
+
+.reset-board {
+    background-color: var(--deep-magenta);
+}
+
+.reset-board:hover {
+    background-color: var(--dark-purple);
 }
