@@ -1,6 +1,3 @@
-// BONUS: consider making a randomizer function that cycles through quetions so that questions can be scoped locally (i.e. made private). how to get it to not repeat questions twice? track questions that were answered correctly. make a var currentQuestion and then when it is answered correctly, it is removed from questionBank, else if no questions are left: do nothing. (dot)SPLICE!!!
-// BONUS: add a counter to question numbers so each question is counter +=1! this way it won't print question# but count on its own (in case questions are randomized)
-
 const questionBank = [
     {
         question: "Inside the HTML document, where do you place your JavaScript code?",
@@ -30,6 +27,76 @@ const questionBank = [
         answer: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.",
         correctFeedback: "High-five! The logical operator && returns true if both expressions are true while the logical operator || returns true if one expression or the other returns true.",
         incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
+    },
+    {
+        question: "How do we declare a conditional statement in JavaScript?",
+        responses: ["for loop", "while loop", "if...else", "difference...between"],
+        answer: "if...else",
+        correctFeedback: "Amazing! This is something you will use every day as a JavaScript developer.",
+        incorrectFeedback: "if... else is how we declare a conditional statement."
+    },
+    {
+        question: "From the given array, which index is the letter \'b\' on? [\'a\', \'b\', \'c\', \'d\']?",
+        responses: ["3", "1", "0", "2"],
+        answer: "1",
+        correctFeedback: "Rock on! Arrays start at index 0, so that would make 'b' at index 1.",
+        incorrectFeedback: "Arrays start counting at index 0, so that would make 'b' at index 1."
+    },
+    {
+        question: "How do we stop a loop from repeating indefinitely?",
+        responses: ["A loop will stop executing when the condition is true.", "A loop will stop executing when the condition is false.", "When we have iterated through half of the condition.", "We have to explicitly end the loop with the break keyword."],
+        answer: "A loop will stop executing when the condition is false.",
+        correctFeedback: "Fantastic! JavaScript loops will stop executing when the condition is false.",
+        incorrectFeedback: "JavaScript loops will stop executing when the condition is false. Have a look at the documentation to solidify your knowledge of loops."
+    },
+    {
+        question: "Which statement below is FALSE about functions in JavaScript?",
+        responses: ["Functions can be reused throughout your code.", "Functions can receive arguments that can alter the output of a function.", "A function must always be assigned an identifier.", "Functions are able to be recursive."],
+        answer: "A function must always be assigned an identifier.",
+        correctFeedback: "You're doing great! Functions without identifiers are called anonymous functions, which are used quite frequently used in JavaScript. Make sure you are familiar with functions and how they work.",
+        incorrectFeedback: "Functions without identifiers are called anonymous functions, which are used quite frequently used in JavaScript. Make sure you are familiar with functions and how they work."
+    },
+    {
+        question: "What are the two types of scope JavaScript uses?",
+        responses: ["Surrounding and Inner", "Outside and Inside", "Broad and Local", "Global and Local"],
+        answer: "Global and Local",
+        correctFeedback: "Nice job! Global items are not in a block of code whereas local items are hidden within blocks of code like a function",
+        incorrectFeedback: "JavaScript has two forms of scope, global and local. Have a look at the documentation on scope because it is something that will continuously during your JavaScript journey."
+    },
+    {
+        question: "Which two array methods would allow me to remove the last element of my array and to also be able to add a new element to the beginning of my array?",
+        responses: ["pop() and unshift()", "concat() and shift()", "push() and sort()", "forEach() and pop()"],
+        answer: "pop() and unshift()",
+        correctFeedback: "Awesome!",
+        incorrectFeedback: "The pop array method removes the last element of an array and the unshift method adds an element to beginning of the array."
+    },
+    {
+        question: "How do we access a value stored in an object?",
+        responses: ["Period notation, Square bracket notation", "Dot notation, Bracket notation", "Dot notation, Curl bracket notation", "Equal notation, Abstract notation"],
+        answer: "Dot notation, Curl bracket notation",
+        correctFeedback: "Yes!",
+        incorrectFeedback: "Nice try! We have two ways of accessing data inside of an object, dot notation and bracket notation. Have a look at the documentation on objects."
+    },
+    {
+        question: "What is an object method?",
+        responses: ["A function associated with an object", "A function that takes an object for an argument", "Keys in an object that have a number assigned to it", "An array saved inside of an object"],
+        answer: "A function associated with an object",
+        correctFeedback: "Good job! An object method is just an object with an available function associated with it. Like arrays, objects have methods that can be used to help us interact with them.",
+        incorrectFeedback: "An object method is just an object with an available function associated with it. Like arrays, objects have methods that can be used to help us interact with them."
+    },
+    {
+        question: "What is the purpose of the \'This\' operator?",
+        responses: ["Allows us to specify certain variables to it which can be used in the global scope.", "Can easily store global variables for when we need access to them.", "Refers to the object it is in and changes based on which object it is in when being called.", "Lets us make a reference to our window gives us access to special object methods."],
+        answer: "Refers to the object it is in and changes based on which object it is in when being called.",
+        correctFeedback: "Rock on!",
+        incorrectFeedback: "The keyword THIS refers to the object it is in. THIS changes based on which object it is in when being called. The THIS keyword can be tough to understand at first but it is a helpful tool once understood."
+    },
+    {
+        question: "Which is NOT true about JavaScript?",
+        responses: ["JavaScript increases interactivity of our websites.", "JavaScript handles numbers better than most programming languages.", "JavaScript lets provide the user immediate feedback upon an action.", "Javascript allows developers to create richer interfaces for the users."],
+        answer: "JavaScript handles numbers better than most programming languages.",
+        correctFeedback: "You did it! JavaScript is definitely not known for being good with numbers.",
+        incorrectFeedback: "JavaScript does a lot of cool things but it is not known for being good with numbers. Have a look around the internet for the pros and cons of JavaScript."
     }
 ];
 
