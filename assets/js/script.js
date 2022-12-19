@@ -41,6 +41,7 @@ const leaderboardPage = document.querySelector("#leaderboard-page");
 const page = document.querySelector(".page"); // all page types
 var responseBox = document.querySelector(".responses");
 const home = document.querySelector(".home");
+
 // recycled variables
 var questionBankIndex;
 var correctCount;
@@ -74,6 +75,12 @@ function opener() {
     makeInactive(leaderboardPage);
 };
 opener();
+
+function quizView() {
+    makeInactive(openingPage);
+    makeActive(quizPage);
+    makeInactive(leaderboardPage);
+};
 
 function leaderBoard() {
     makeInactive(quizPage);
@@ -119,7 +126,7 @@ home.addEventListener("click", function() {
 
 var clear = document.querySelector(".reset-board");
 clear.addEventListener("click", function() {
-    // localStorage.clear();
+    localStorage.clear();
 })
 
 // timer countdown
@@ -178,7 +185,7 @@ responseBox.addEventListener("click", function(event) {
 startButton.addEventListener("click", function(event) {
     correctCount = 0;
     questionBankIndex = 0;
-    clearInterval(timerInterval);
+    clearInterval(timerInterval); // backup clear just in case user refreshes page and cancels quiz
     secondsLeft = 60;
     // connects audio to JS
     const boop = document.getElementById("boop");
@@ -186,7 +193,5 @@ startButton.addEventListener("click", function(event) {
     boop.play();
     insertQuestion();
     quizTimer();
-    makeInactive(openingPage);
-    makeActive(quizPage);
-    makeInactive(leaderboardPage);
+    quizView();
 });
