@@ -98,9 +98,9 @@ function compareNumbers(userDataA, userDataB) {
 var submit = document.querySelector(".submit-initials");
 submit.addEventListener("click", function(event) {
     event.preventDefault();
-    if (initials.value === "") {
-        alert("Please insert your initials to get on the board!")
-        return
+    if (initials.value === "" || !initials.value.match(/^[A-Za-z]*$/)) { // RegExp from https://plainenglish.io/blog/javascript-check-if-string-contains-only-letters-and-numbers-5dce23ddfecf
+        alert("Please insert letter initials to get on the board!");
+        return;
     }
     // var initials = document.querySelector("#initials");
     var userData = {
