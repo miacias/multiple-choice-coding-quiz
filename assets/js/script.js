@@ -220,21 +220,8 @@ function quizTimer() { // only visible after clicking Start Button
 function removeQuestion() {
     question.replaceChildren();
     responseBox.replaceChildren();
-    insertQuestion();
-};
-
-function insertQuestion() {
-    // access HTML question section
-    question = document.querySelector(".question");
-    responseBox = document.querySelector(".responses");
-    question.textContent = (questionBank[questionBankIndex].question);
-    for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
-        responseOptions = document.createElement("button");
-        // responseOptions.setAttribute("id", "answer-button" + r); // added this line
-        responseBox.append(responseOptions);
-        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
-        responseBox.addEventListener("click", function(event) {
-        // event.stopPropagation() could be useful here
+    removeEventListener("click", function(event) {
+        event.stopPropagation() // could be useful here
         event.preventDefault(); // for button to prevent page refresh
         // answer, save to array (high score value to save detailed history), then clear answer box, load next question
         var userChoice = event.target.textContent;
@@ -251,8 +238,41 @@ function insertQuestion() {
             leaderBoard();
             clearInterval(timerInterval);
         }
+        });
+    insertQuestion();
+};
+
+function insertQuestion() {
+    // access HTML question section
+    question = document.querySelector(".question");
+    responseBox = document.querySelector(".responses");
+    question.textContent = (questionBank[questionBankIndex].question);
+    for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
+        responseOptions = document.createElement("button");
+        // responseOptions.setAttribute("id", "answer-button" + r); // added this line
+        responseBox.append(responseOptions);
+        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
+    } // 0 1 3 7 13 index skipping
+    responseBox.addEventListener("click", function(event) {
+        event.stopPropagation(); // could be useful here
+        event.preventDefault(); // for button to prevent page refresh
+        // answer, save to array (high score value to save detailed history), then clear answer box, load next question
+        var userChoice = event.target.textContent;
+        if (userChoice === questionBank[questionBankIndex].answer) {
+            correctCount ++;
+        } else {
+            secondsLeft --;
+        }
+        if (questionBankIndex < questionBank.length - 1) {
+            questionBankIndex ++;
+            // pause quiz, show feedback for a moment, remove feedback and unpause quiz
+            console.log(questionBankIndex);
+            removeQuestion();
+        } else if (questionBankIndex === questionBank.length - 1) {
+            leaderBoard();
+            clearInterval(timerInterval);
+        }
         })
-    }
 };
 
 function checkAnswers() {
