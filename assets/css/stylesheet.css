@@ -66,10 +66,12 @@ button {
 }
 
 .responses {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
     margin: 4%;
-    justify-content: space-between;
+}
+
+.responses button {
+    margin: 1%;
+    /* flex-direction: column; */
 }
 
 #leaderboard-page {

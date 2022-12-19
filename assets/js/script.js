@@ -64,7 +64,7 @@ function makeActive(page) { // parameter allows running on different page types
     if (dataAttribute === "inactive") {
         page.setAttribute("data-view", "active");
         page.style.visibility = "visible";
-        page.style.display = "block";
+        page.style.display = "flex";
     }
 };
 
