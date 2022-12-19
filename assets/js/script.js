@@ -41,6 +41,7 @@ const leaderboardPage = document.querySelector("#leaderboard-page");
 const page = document.querySelector(".page"); // all page types
 var responseBox = document.querySelector(".responses");
 const home = document.querySelector(".home");
+
 // recycled variables
 var questionBankIndex;
 var correctCount;
@@ -63,7 +64,7 @@ function makeActive(page) { // parameter allows running on different page types
     if (dataAttribute === "inactive") {
         page.setAttribute("data-view", "active");
         page.style.visibility = "visible";
-        page.style.display = "block";
+        page.style.display = "flex";
     }
 };
 
@@ -74,6 +75,12 @@ function opener() {
     makeInactive(leaderboardPage);
 };
 opener();
+
+function quizView() {
+    makeInactive(openingPage);
+    makeActive(quizPage);
+    makeInactive(leaderboardPage);
+};
 
 function leaderBoard() {
     makeInactive(quizPage);
@@ -99,12 +106,12 @@ submit.addEventListener("click", function(event) {
     everyone.push(userData);
     var sortBoard = everyone.sort(compareNumbers).reverse();
     // set localStorage
-    var board = JSON.parse(localStorage.getItem("board")); // designates localStorage as original data format (array of objects) from its stringified stored form
     localStorage.setItem("board", JSON.stringify(sortBoard)); // saves sorted data as string
     var finalBoard = document.querySelector(".user-scores");
     finalBoard.replaceChildren();
     // get localStorage and put into HTML via for loop
-    for (let s = 0; s < everyone.length; s++) {
+    var board = JSON.parse(localStorage.getItem("board")); // designates localStorage as original data format (array of objects) from its stringified stored form
+    for (let s = 0; s < board.length; s++) {
         var individualScores = document.createElement("div");
         finalBoard.append(individualScores);
         individualScores.textContent = "Player " + board[s].initials + " Score: " + board[s].score; // success!
@@ -120,6 +127,8 @@ home.addEventListener("click", function() {
 var clear = document.querySelector(".reset-board");
 clear.addEventListener("click", function() {
     localStorage.clear();
+    var finalBoard = document.querySelector(".user-scores");
+    finalBoard.replaceChildren();
 })
 
 // timer countdown
@@ -178,15 +187,13 @@ responseBox.addEventListener("click", function(event) {
 startButton.addEventListener("click", function(event) {
     correctCount = 0;
     questionBankIndex = 0;
-    clearInterval(timerInterval);
-    secondsLeft = 3;
+    clearInterval(timerInterval); // backup clear just in case user refreshes page and cancels quiz
+    secondsLeft = 60;
     // connects audio to JS
     const boop = document.getElementById("boop");
     boop.volume = 0.2;
     boop.play();
     insertQuestion();
     quizTimer();
-    makeInactive(openingPage);
-    makeActive(quizPage);
-    makeInactive(leaderboardPage);
+    quizView();
 });
