@@ -227,17 +227,15 @@ function insertQuestion() {
     // access HTML question section
     question = document.querySelector(".question");
     responseBox = document.querySelector(".responses");
-    var responseOptions
     question.textContent = (questionBank[questionBankIndex].question);
     for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
+        responseOptions.setAttribute("class", "answer-button"); // added this line
         responseBox.append(responseOptions);
         responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
     }
 };
 
-// triggers next question by incrementing questionBankIndex +1
-responseBox.addEventListener("click", function(event) {
     var userChoice = event.target.textContent;
     if (userChoice === questionBank[questionBankIndex].answer) {
         correctCount ++;
@@ -252,7 +250,30 @@ responseBox.addEventListener("click", function(event) {
         leaderBoard();
         clearInterval(timerInterval);
     }
-})
+
+// triggers next question by incrementing questionBankIndex +1
+responseOptions.onclick = function(event) {
+    event.stopPropagation()
+}
+
+// // triggers next question by incrementing questionBankIndex +1
+// responseBox.addEventListener("click", function(event) {
+//     // event.stopPropagation() could be useful here
+//     var userChoice = event.target.textContent;
+//     if (userChoice === questionBank[questionBankIndex].answer) {
+//         correctCount ++;
+//     } else {
+//         secondsLeft --;
+//     }
+//     if (questionBankIndex < questionBank.length - 1) {
+//         questionBankIndex ++;
+//         // pause quiz, show feedback for a moment, remove feedback and unpause quiz
+//         removeQuestion();
+//     } else if (questionBankIndex === questionBank.length - 1) {
+//         leaderBoard();
+//         clearInterval(timerInterval);
+//     }
+// })
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
