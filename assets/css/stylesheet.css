@@ -32,16 +32,22 @@ h1, h2 {
 }
 
 .page {
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     justify-content: center;
-    /* align-items: flex-end; */
-    /* align-items: center; */
-    /* max-height: 100%; */
     border-top-right-radius: 10em;
     box-shadow: 1em 1em 2em 0em var(--blackish), inset 3em -0.5em #876b7b;
     margin: 6% 6% 8% 2%; /*TRBL*/
     padding: 4% 8% 2% 5em; /*last value is EM because inner box shadow is EM*/
+}
+
+#opening-page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--sea-foam);
+    color: var(--navy-blue);
 }
 
 button {
@@ -53,12 +59,7 @@ button {
     word-break: normal;
     overflow-wrap: break-word;
     padding: 8px;
-    /* vertical-align: middle; /*trying to fix text to appear at centered button height*/
-}
-
-#opening-page {
-    background-color: var(--sea-foam);
-    color: var(--navy-blue);
+    width: fit-content;
 }
 
 #quiz-page {
@@ -71,7 +72,7 @@ button {
 
 .responses button {
     margin: 1%;
-    /* flex-direction: column; */
+    flex-direction: column;
 }
 
 #leaderboard-page {
