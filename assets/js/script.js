@@ -127,6 +127,8 @@ home.addEventListener("click", function() {
 var clear = document.querySelector(".reset-board");
 clear.addEventListener("click", function() {
     localStorage.clear();
+    var finalBoard = document.querySelector(".user-scores");
+    finalBoard.replaceChildren();
 })
 
 // timer countdown
