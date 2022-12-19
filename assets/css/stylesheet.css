@@ -167,12 +167,14 @@ form {
     }
 }
 
-/* LARGE PHONE SIZING */
-@media screen and (min-width: 577px) {
+/* alternative sizing not necessary */
 
-}
+/* LARGE PHONE SIZING */
+/* @media screen and (min-width: 577px) {
+
+} */
 
 /* TABLET SIZING */
-@media screen and (min-width: 769px) {
+/* @media screen and (min-width: 769px) {
 
-}
+} */
