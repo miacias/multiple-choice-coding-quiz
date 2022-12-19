@@ -230,13 +230,14 @@ function insertQuestion() {
     question.textContent = (questionBank[questionBankIndex].question);
     for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
-        responseOptions.setAttribute("class", "answer-button"); // added this line
+        responseOptions.setAttribute("id", "answer-button" + r); // added this line
         responseBox.append(responseOptions);
         responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
     }
 };
 
-    var userChoice = event.target.textContent;
+function checkAnswers() {
+    var userChoice = getElementById("answer-button"[r]).textContent;
     if (userChoice === questionBank[questionBankIndex].answer) {
         correctCount ++;
     } else {
@@ -250,10 +251,19 @@ function insertQuestion() {
         leaderBoard();
         clearInterval(timerInterval);
     }
+}
 
-// triggers next question by incrementing questionBankIndex +1
-responseOptions.onclick = function(event) {
-    event.stopPropagation()
+document.getElementById("answer-button0").onclick = function() {
+    checkAnswers();
+}
+document.getElementById("answer-button1").onclick = function() {
+    checkAnswers();
+}
+document.getElementById("answer-button2").onclick = function() {
+    checkAnswers();
+}
+document.getElementById("answer-button3").onclick = function() {
+    checkAnswers();
 }
 
 // // triggers next question by incrementing questionBankIndex +1
