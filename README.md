@@ -28,7 +28,10 @@ The following image demonstrates a sample question:
 ![Sample question view with a question and Response buttons](/assets/images/screencapture-sample-question-view.png)
 
 The following image demonstrates the post-quiz leaderboard:
-![Sample leaderboard view with a congratulations on screen, a text input box and Submit button, a Home button, and a Clear Scores button.](./assets/images/screencapture-sample-leaderboard-view.png) 
+![Sample leaderboard view with a congratulations on screen, a text input box and Submit button, a Home button, and a Clear Scores button.](./assets/images/screencapture-sample-leaderboard-view.png)
+
+The following image demonstrates the last-saved Excalidraw planning stages:
+![Functions from JavaScript are visually illustrated with their generalized functionalities.](./assets/images/excalidraw-plans-2x.png)
 
 ## Features
 
