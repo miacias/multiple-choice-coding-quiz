@@ -98,6 +98,10 @@ function compareNumbers(userDataA, userDataB) {
 var submit = document.querySelector(".submit-initials");
 submit.addEventListener("click", function(event) {
     event.preventDefault();
+    if (initials.value === "") {
+        alert("Please insert your initials to get on the board!")
+        return
+    }
     // var initials = document.querySelector("#initials");
     var userData = {
         initials: initials.value,
