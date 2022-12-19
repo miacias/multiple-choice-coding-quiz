@@ -51,6 +51,7 @@ The following image demonstrates the last-saved Excalidraw planning stages:
 - A randomizer function that presents questions in a different order each time the game is played. This function would contain or reference the question bank so that the questions are locally scoped instead of globally scoped. A variable currentQuestion would be able to handle each question. Correct responses would be removed from the questionBank pool via .splice, else incorrect responses would elicit no changes to the array of questions.
 - A randomizer function that orders responses on-screen for the viewer each time a question is accessed.
 - A counter that prints out the current number question to the HTML that counts ++ to show the user how many questions they have answered. (Care must be taken so the number question from its location in the array of questions is not shown. This counter must count on its own in the event that questions are presented randomly.)
+- Bug fix: clicking in empty space near response buttons does not get accepted as an answer selection.
 
 ## Credits 
 
