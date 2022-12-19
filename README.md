@@ -1,24 +1,13 @@
 # multiple-choice-coding-quiz
 
-- Catalin Pit (https://catalins.tech/store-array-in-localstorage)
-
- 
-
-## Description 
-
+## Description
  The motivation to building this online quiz was to provide a scaffold for future education-based web API projects. As an educator, I struggled to find resources that fit exactly the needs of my classroom, but in taking on this challenge, I will soon be able to build just the right classroom tools.
 
  I learned that JavaScript's ability to access a reference to HTML via the DOM is a fantastic resource for webpage interactivity. There are innumerable ways to design kinetically interactive pages, provided a little creativity.
 
 
-## Installation 
-
+## Installation
  N/A. [Deployed site here!](https://miacias.github.io/multiple-choice-coding-quiz/)
- 
-
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running. 
-
- 
  
 
 ## Usage 
@@ -47,22 +36,18 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits 
 
- 
- 
+Documentation referenced:
+- Mozilla Developer Network (HTML and CSS)
+- Slack Overflow forums
+- U. Penn Bootcamp study groups
 
-List your collaborators, if any, with links to their GitHub profiles. 
+Tutorials referenced:
+- Catalin Pit, [Catalins.tech](https://catalins.tech/store-array-in-localstorage) - recap on local storage
+- Coding Beauty, [PlainEnglish.io](https://plainenglish.io/blog/javascript-check-if-string-contains-only-letters-and-numbers-5dce23ddfecf) - RegExp for submitting initials
 
- 
- 
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. 
-
- 
- 
-
-If you followed tutorials, include links to those here as well. 
-
- 
+Artists:
+- Skyblue2u, [ColourLovers.com](https://www.colourlovers.com/palette/580974/Adrift_in_Dreams) - color palette for all backgrounds and font colors
+- leahdragon, [ColourLovers.com](https://www.colourlovers.com/palette/4889051/colorado) - color palette for select buttons
  
 
 ## License 
