@@ -19,24 +19,20 @@
  5. To play again, click Home. Alternatively, to erase the leaderboard and start fresh, click Clear Scores.
  
 
-Provide instructions and examples for use. Include screenshots as needed. 
+## Assets
+The following image demonstrates the web application's appearance upon opening the site:
 
- 
- 
+![Default view before game begins with instructions and a Start button](./assets/images/screencapture-opening-view.png)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax: 
+The following image demonstrates a sample question:
+![Sample question view with a question and Response buttons](/assets/images/screencapture-sample-question-view.png)
 
- 
- 
+The following image demonstrates the post-quiz leaderboard:
+![Sample leaderboard view with a congratulations on screen, a text input box and Submit button, a Home button, and a Clear Scores button.](./assets/images/screencapture-sample-leaderboard-view.png) 
 
-   ```md 
 
-   ![alt text](assets/images/screenshot.png) 
+## Roadmap
 
-   ``` 
-
- 
- 
 
 ## Credits 
 
