@@ -141,3 +141,38 @@ form {
 .reset-board:hover {
     background-color: var(--dark-purple);
 }
+
+/* MOBILE VIEWS */
+
+/* SMALL PHONE SIZING */
+@media screen and (max-width: 576px) {
+    .page {
+        height: max-content;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    #initials {
+        height: 2em;
+        margin-bottom: 4%;
+    }
+
+    #leaderboard-page button {
+        width: 100%;
+        margin-bottom: 8%;
+    }
+}
+
+/* LARGE PHONE SIZING */
+@media screen and (min-width: 577px) {
+
+}
+
+/* TABLET SIZING */
+@media screen and (min-width: 769px) {
+
+}
