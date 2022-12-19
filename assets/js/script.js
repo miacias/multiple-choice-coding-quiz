@@ -99,12 +99,12 @@ submit.addEventListener("click", function(event) {
     everyone.push(userData);
     var sortBoard = everyone.sort(compareNumbers).reverse();
     // set localStorage
-    var board = JSON.parse(localStorage.getItem("board")); // designates localStorage as original data format (array of objects) from its stringified stored form
     localStorage.setItem("board", JSON.stringify(sortBoard)); // saves sorted data as string
     var finalBoard = document.querySelector(".user-scores");
     finalBoard.replaceChildren();
     // get localStorage and put into HTML via for loop
-    for (let s = 0; s < everyone.length; s++) {
+    var board = JSON.parse(localStorage.getItem("board")); // designates localStorage as original data format (array of objects) from its stringified stored form
+    for (let s = 0; s < board.length; s++) {
         var individualScores = document.createElement("div");
         finalBoard.append(individualScores);
         individualScores.textContent = "Player " + board[s].initials + " Score: " + board[s].score; // success!
@@ -119,7 +119,7 @@ home.addEventListener("click", function() {
 
 var clear = document.querySelector(".reset-board");
 clear.addEventListener("click", function() {
-    localStorage.clear();
+    // localStorage.clear();
 })
 
 // timer countdown
