@@ -45,9 +45,12 @@ The following image demonstrates the last-saved Excalidraw planning stages:
 
  I am working through a series of weekly projects and hope to return to this one, though I may not have the time to come back to this project. Here are some of the desired features I would like to add in the future in no particular order:
 
-- Upon clicking a quiz answer button, pausing the game timer briefly to provide the user with feedback (congratulations upon correct response and correction upon incorrect response). After the pause, resuming the game timer's countdown
+- Upon clicking a quiz answer button, pausing the game timer briefly to provide the user with feedback (congratulations upon correct response and correction upon incorrect response). After the pause, resuming the game timer's countdown. [Possible resource.](https://stackoverflow.com/questions/3969475/javascript-pause-settimeout)
 - Protection from a fail case that currently allows user to input initials multiple times after only playing the game once
 - Visual animations between page view changes or question changes
+- A randomizer function that presents questions in a different order each time the game is played. This function would contain or reference the question bank so that the questions are locally scoped instead of globally scoped. A variable currentQuestion would be able to handle each question. Correct responses would be removed from the questionBank pool via .splice, else incorrect responses would elicit no changes to the array of questions.
+- A randomizer function that orders responses on-screen for the viewer each time a question is accessed.
+- A counter that prints out the current number question to the HTML that counts ++ to show the user how many questions they have answered. (Care must be taken so the number question from its location in the array of questions is not shown. This counter must count on its own in the event that questions are presented randomly.)
 
 ## Credits 
 

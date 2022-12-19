@@ -1,6 +1,3 @@
-// BONUS: consider making a randomizer function that cycles through quetions so that questions can be scoped locally (i.e. made private). how to get it to not repeat questions twice? track questions that were answered correctly. make a var currentQuestion and then when it is answered correctly, it is removed from questionBank, else if no questions are left: do nothing. (dot)SPLICE!!!
-// BONUS: add a counter to question numbers so each question is counter +=1! this way it won't print question# but count on its own (in case questions are randomized)
-
 const questionBank = [
     {
         question: "Inside the HTML document, where do you place your JavaScript code?",
@@ -30,6 +27,20 @@ const questionBank = [
         answer: "The logical operator && returns true if BOTH expressions are true while the logical operator || returns true if ONE expression or the other returns true.",
         correctFeedback: "High-five! The logical operator && returns true if both expressions are true while the logical operator || returns true if one expression or the other returns true.",
         incorrectFeedback: "AND (&&) means both expressions are true while OR (||) means only one expression is true."
+    },
+    {
+        question: "How do we declare a conditional statement in JavaScript?",
+        responses: ["for loop", "while loop", "if...else", "difference...between"],
+        answer: "if...else",
+        correctFeedback: "Amazing! This is something you will use every day as a JavaScript developer.",
+        incorrectFeedback: "if... else is how we declare a conditional statement."
+    },
+    {
+        question: "",
+        responses: [""],
+        answer: "",
+        correctFeedback: "",
+        incorrectFeedback: ""
     }
 ];
 
