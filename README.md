@@ -67,6 +67,9 @@ Tutorials referenced:
 Artists:
 - Skyblue2u, [ColourLovers.com](https://www.colourlovers.com/palette/580974/Adrift_in_Dreams) - color palette for all backgrounds and font colors
 - leahdragon, [ColourLovers.com](https://www.colourlovers.com/palette/4889051/colorado) - color palette for select buttons
+
+Tutor credit:
+- David Anusontarangkul, [GitHib](https://github.com/anusontarangkul) - AskBCS Tutor on removeEventListener feature
  
 
 ## License 

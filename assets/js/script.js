@@ -227,32 +227,35 @@ function insertQuestion() {
     // access HTML question section
     question = document.querySelector(".question");
     responseBox = document.querySelector(".responses");
-    var responseOptions
     question.textContent = (questionBank[questionBankIndex].question);
     for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
         responseBox.append(responseOptions);
-        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
+        // r counts index number of responses, so each response gets printed in each button
+        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]);
     }
+    responseBox.addEventListener("click", function answerChecker (event) {
+        event.stopPropagation(); // prevents container <div> screen space from being included in the listener
+        event.preventDefault(); // for Button to prevent page refresh
+        var userChoice = event.target.textContent;
+        if (userChoice === questionBank[questionBankIndex].answer) {
+            correctCount ++;
+        } else {
+            secondsLeft --;
+        }
+        if (questionBankIndex < questionBank.length - 1) {
+            questionBankIndex ++;
+            // pause quiz, show feedback for a moment, remove feedback and unpause quiz
+            console.log(questionBankIndex);
+            removeQuestion();
+        } else if (questionBankIndex === questionBank.length - 1) {
+            leaderBoard();
+            clearInterval(timerInterval);
+        }
+        // stops listener so that when it is called again, it will not double the ++ and -- counters infinitely (+1, +2, +4, +8 etc)
+        this.removeEventListener("click", answerChecker);
+        })
 };
-
-// triggers next question by incrementing questionBankIndex +1
-responseBox.addEventListener("click", function(event) {
-    var userChoice = event.target.textContent;
-    if (userChoice === questionBank[questionBankIndex].answer) {
-        correctCount ++;
-    } else {
-        secondsLeft --;
-    }
-    if (questionBankIndex < questionBank.length - 1) {
-        questionBankIndex ++;
-        // pause quiz, show feedback for a moment, remove feedback and unpause quiz
-        removeQuestion();
-    } else if (questionBankIndex === questionBank.length - 1) {
-        leaderBoard();
-        clearInterval(timerInterval);
-    }
-})
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
