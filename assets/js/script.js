@@ -220,25 +220,6 @@ function quizTimer() { // only visible after clicking Start Button
 function removeQuestion() {
     question.replaceChildren();
     responseBox.replaceChildren();
-    removeEventListener("click", function(event) {
-        event.stopPropagation() // could be useful here
-        event.preventDefault(); // for button to prevent page refresh
-        // answer, save to array (high score value to save detailed history), then clear answer box, load next question
-        var userChoice = event.target.textContent;
-        if (userChoice === questionBank[questionBankIndex].answer) {
-            correctCount ++;
-        } else {
-            secondsLeft --;
-        }
-        if (questionBankIndex < questionBank.length - 1) {
-            questionBankIndex ++;
-            // pause quiz, show feedback for a moment, remove feedback and unpause quiz
-            removeQuestion();
-        } else if (questionBankIndex === questionBank.length - 1) {
-            leaderBoard();
-            clearInterval(timerInterval);
-        }
-        });
     insertQuestion();
 };
 
@@ -249,14 +230,13 @@ function insertQuestion() {
     question.textContent = (questionBank[questionBankIndex].question);
     for (let r = 0; r < questionBank[questionBankIndex].responses.length; r++) {
         responseOptions = document.createElement("button");
-        // responseOptions.setAttribute("id", "answer-button" + r); // added this line
         responseBox.append(responseOptions);
-        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]); // r counts index number of responses, so each response gets printed in each button
-    } // 0 1 3 7 13 index skipping
-    responseBox.addEventListener("click", function(event) {
-        event.stopPropagation(); // could be useful here
-        event.preventDefault(); // for button to prevent page refresh
-        // answer, save to array (high score value to save detailed history), then clear answer box, load next question
+        // r counts index number of responses, so each response gets printed in each button
+        responseOptions.textContent = (questionBank[questionBankIndex].responses[r]);
+    }
+    responseBox.addEventListener("click", function answerChecker (event) {
+        event.stopPropagation(); // prevents container <div> screen space from being included in the listener
+        event.preventDefault(); // for Button to prevent page refresh
         var userChoice = event.target.textContent;
         if (userChoice === questionBank[questionBankIndex].answer) {
             correctCount ++;
@@ -272,57 +252,10 @@ function insertQuestion() {
             leaderBoard();
             clearInterval(timerInterval);
         }
+        // stops listener so that when it is called again, it will not double the ++ and -- counters infinitely (+1, +2, +4, +8 etc)
+        this.removeEventListener("click", answerChecker);
         })
 };
-
-function checkAnswers() {
-    var userChoice = getElementById("answer-button"[r]).textContent;
-    if (userChoice === questionBank[questionBankIndex].answer) {
-        correctCount ++;
-    } else {
-        secondsLeft --;
-    }
-    if (questionBankIndex < questionBank.length - 1) {
-        questionBankIndex ++;
-        // pause quiz, show feedback for a moment, remove feedback and unpause quiz
-        removeQuestion();
-    } else if (questionBankIndex === questionBank.length - 1) {
-        leaderBoard();
-        clearInterval(timerInterval);
-    }
-}
-
-// document.getElementById("answer-button0").onclick = function() {
-//     checkAnswers();
-// }
-// document.getElementById("answer-button1").onclick = function() {
-//     checkAnswers();
-// }
-// document.getElementById("answer-button2").onclick = function() {
-//     checkAnswers();
-// }
-// document.getElementById("answer-button3").onclick = function() {
-//     checkAnswers();
-// }
-
-// // triggers next question by incrementing questionBankIndex +1
-// responseBox.addEventListener("click", function(event) {
-//     // event.stopPropagation() could be useful here
-//     var userChoice = event.target.textContent;
-//     if (userChoice === questionBank[questionBankIndex].answer) {
-//         correctCount ++;
-//     } else {
-//         secondsLeft --;
-//     }
-//     if (questionBankIndex < questionBank.length - 1) {
-//         questionBankIndex ++;
-//         // pause quiz, show feedback for a moment, remove feedback and unpause quiz
-//         removeQuestion();
-//     } else if (questionBankIndex === questionBank.length - 1) {
-//         leaderBoard();
-//         clearInterval(timerInterval);
-//     }
-// })
 
 // START triggers game, timer, and show/hide pages
 startButton.addEventListener("click", function(event) {
